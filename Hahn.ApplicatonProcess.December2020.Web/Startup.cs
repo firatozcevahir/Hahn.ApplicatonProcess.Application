@@ -1,19 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Connections;
-// using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Aurelia.DotNet;
+using Figgle;
+using Microsoft.OpenApi.Models;
 
 namespace Hahn.ApplicatonProcess.December2020.Web
 {
@@ -30,7 +22,6 @@ namespace Hahn.ApplicatonProcess.December2020.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
             services.AddCors(options =>
             {
                 options.AddPolicy("corsPolicy",
@@ -45,6 +36,15 @@ namespace Hahn.ApplicatonProcess.December2020.Web
             {
                 configuration.RootPath = "wwwroot";
             });
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "My API",
+                    Description = "My First ASP.NET Core Web API"
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,17 +55,25 @@ namespace Hahn.ApplicatonProcess.December2020.Web
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+
+
+           //  app.UseHttpsRedirection();
 
             app.UseStaticFiles();
-            // .UseHttpsRedirection()
             app.UseDefaultFiles();
-            // app.UseSwaggerDocs();
             app.UseRouting();
             app.UseAuthentication();
             app.UseCors("corsPolicy");
             app.UseAuthorization();
+            app.UseSwagger();
 
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
