@@ -21,7 +21,7 @@ namespace Hahn.ApplicatonProcess.December2020.Web.Controllers
         }
 
         [HttpGet]
-        [Route("get-applicant")]
+        [Route("get-applicant/{id}")]
         public IActionResult Get(int id)
         {
             return Ok("test");
