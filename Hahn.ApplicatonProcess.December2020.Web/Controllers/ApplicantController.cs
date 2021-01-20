@@ -29,12 +29,12 @@ namespace Hahn.ApplicatonProcess.December2020.Web.Controllers
             _logger = logger;
         }
 
-
         #region GetMethods
         [HttpGet]
         [Route("get/{id}")]
         public async Task<IActionResult> Get(int id)
         {
+            // TODO: HANDLE LOGS
             var result = await _service.GetApplicant(id);
             if (result.Success)
             {
@@ -42,7 +42,7 @@ namespace Hahn.ApplicatonProcess.December2020.Web.Controllers
             }
             else
             {
-                _logger.LogError($"Err: {result.Message}. ErrCode: {result.MessageCode}");
+                _logger.LogWarning($"Err: {result.Message}. ErrCode: {result.MessageCode}");
                 return BadRequest(result);
             }
         }
@@ -51,6 +51,7 @@ namespace Hahn.ApplicatonProcess.December2020.Web.Controllers
         [Route("get")]
         public async Task<IActionResult> Get()
         {
+            // TODO: HANDLE LOGS
             var result = await _service.GetApplicants();
             if (result.Success)
             {
@@ -67,6 +68,7 @@ namespace Hahn.ApplicatonProcess.December2020.Web.Controllers
         [Route("add")]
         public async Task<IActionResult> Post([FromBody] Applicant applicant)
         {
+            // TODO: HANDLE LOGS
             if (ModelState.IsValid)
             {
                 var result = await _service.AddApplicant(applicant);
@@ -91,6 +93,7 @@ namespace Hahn.ApplicatonProcess.December2020.Web.Controllers
         [Route("update")]
         public async Task<IActionResult> Put([FromBody] Applicant applicant)
         {
+            // TODO: HANDLE LOGS
             if (ModelState.IsValid)
             {
                 var result = await _service.UpdateApplicant(applicant);
@@ -114,6 +117,7 @@ namespace Hahn.ApplicatonProcess.December2020.Web.Controllers
         [Route("delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
+            // TODO: HANDLE LOGS
             var result = await _service.DeleteApplicant(id);
             if (result.Success)
             {

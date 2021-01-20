@@ -9,6 +9,7 @@ namespace Hahn.ApplicatonProcess.December2020.Data.Helpers
     public enum DbTypes
     {
         InMemory,
-        SQLite
+        SQLite,
+        SQLServer
     }
 }

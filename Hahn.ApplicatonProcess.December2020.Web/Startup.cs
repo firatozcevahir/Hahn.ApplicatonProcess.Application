@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.Http;
 using Figgle;
 using Microsoft.OpenApi.Models;
 using Hahn.ApplicatonProcess.December2020.Data.DataContext;
@@ -13,6 +12,11 @@ using System;
 using Hahn.ApplicatonProcess.December2020.Data;
 using Hahn.ApplicatonProcess.December2020.Domain.Interfaces;
 using Hahn.ApplicatonProcess.December2020.Domain.DataService;
+using Serilog;
+using FluentValidation.AspNetCore;
+using FluentValidation;
+using Hahn.ApplicatonProcess.December2020.Domain.Models;
+using Hahn.ApplicatonProcess.December2020.Domain.Validators;
 
 namespace Hahn.ApplicatonProcess.December2020.Web
 {
@@ -29,6 +33,20 @@ namespace Hahn.ApplicatonProcess.December2020.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddLogging(builder =>
+            {
+                var filename = Configuration.GetSection("logger:filename").Value;
+                var serilogLogger = new LoggerConfiguration()
+                .WriteTo.File($"logs/{filename}.txt", rollingInterval: RollingInterval.Day)
+                .CreateLogger();
+                builder.AddSerilog(serilogLogger, true);
+            });
+
+            //fluent validation integration
+            services
+                .AddMvc()
+                .AddFluentValidation();
+
             services.AddCors(options =>
             {
                 options.AddPolicy("corsPolicy",
@@ -39,9 +57,6 @@ namespace Hahn.ApplicatonProcess.December2020.Web
                               .AllowAnyMethod()
                  );
             });
-
-            //Add DataServices
-            services.AddSingleton<IApplicantDataService, ApplicantDataService>();
 
             services.AddSpaStaticFiles(configuration =>
             {
@@ -71,6 +86,11 @@ namespace Hahn.ApplicatonProcess.December2020.Web
                     //handle other db types
                 }
             });
+
+
+            //Add DI services
+            services.AddScoped<IApplicantDataService, ApplicantDataService>();
+            services.AddTransient<IValidator<Applicant>, ApplicantValidator>();
 
         }
 
@@ -104,7 +124,7 @@ namespace Hahn.ApplicatonProcess.December2020.Web
                 var services = scope.ServiceProvider;
                 var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
                 // Init Db with example data
-               var result= DbInitializer.Initialize(services);
+                var result = DbInitializer.Initialize(services);
                 if (!result)
                 {
                 }
@@ -113,7 +133,7 @@ namespace Hahn.ApplicatonProcess.December2020.Web
             app.UseSpa(spa =>
             {
                 // spa.Options.SourcePath = "wwwroot";
-                
+
 
                 if (env.IsDevelopment())
                 {
