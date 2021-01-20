@@ -6,6 +6,13 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Http;
 using Figgle;
 using Microsoft.OpenApi.Models;
+using Hahn.ApplicatonProcess.December2020.Data.DataContext;
+using Microsoft.EntityFrameworkCore;
+using Hahn.ApplicatonProcess.December2020.Data.Helpers;
+using System;
+using Hahn.ApplicatonProcess.December2020.Data;
+using Hahn.ApplicatonProcess.December2020.Domain.Interfaces;
+using Hahn.ApplicatonProcess.December2020.Domain.DataService;
 
 namespace Hahn.ApplicatonProcess.December2020.Web
 {
@@ -32,6 +39,10 @@ namespace Hahn.ApplicatonProcess.December2020.Web
                               .AllowAnyMethod()
                  );
             });
+
+            //Add DataServices
+            services.AddSingleton<IApplicantDataService, ApplicantDataService>();
+
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "wwwroot";
@@ -45,6 +56,22 @@ namespace Hahn.ApplicatonProcess.December2020.Web
                     Description = "My First ASP.NET Core Web API"
                 });
             });
+
+            services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                var dbtype = Configuration.GetSection("app:dbType").Value;
+                var connectionstring = Configuration.GetSection("app:connectionString").Value;
+
+                if (dbtype.Equals(nameof(DbTypes.InMemory), StringComparison.OrdinalIgnoreCase))
+                {
+                    options.UseInMemoryDatabase(connectionstring);
+                }
+                else
+                {
+                    //handle other db types
+                }
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,12 +81,6 @@ namespace Hahn.ApplicatonProcess.December2020.Web
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            // Enable middleware to serve generated Swagger as a JSON endpoint.
-
-
-           //  app.UseHttpsRedirection();
-
             app.UseStaticFiles();
             app.UseDefaultFiles();
             app.UseRouting();
@@ -68,8 +89,6 @@ namespace Hahn.ApplicatonProcess.December2020.Web
             app.UseAuthorization();
             app.UseSwagger();
 
-            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
-            // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
@@ -78,15 +97,30 @@ namespace Hahn.ApplicatonProcess.December2020.Web
             {
                 endpoints.MapControllers();
             });
+
+            var scopeFactory = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>();
+            using (var scope = scopeFactory.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                // Init Db with example data
+               var result= DbInitializer.Initialize(services);
+                if (!result)
+                {
+                }
+            }
+
             app.UseSpa(spa =>
             {
                 // spa.Options.SourcePath = "wwwroot";
+                
 
                 if (env.IsDevelopment())
                 {
                     spa.UseProxyToSpaDevelopmentServer("http://localhost:8080");
                 }
             });
+
         }
     }
 }
