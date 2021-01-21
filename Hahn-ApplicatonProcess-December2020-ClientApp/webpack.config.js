@@ -254,7 +254,8 @@ module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, h
     })),
     ...when(!tests, new CopyWebpackPlugin({
       patterns: [
-        { from: 'static', to: outDir, globOptions: { ignore: ['.*'] } }
+        { from: 'static', to: outDir, globOptions: { ignore: ['.*'] } },
+        { from: 'src/assets/i18n/locales/', to: 'assets/i18n/locales/' }
       ]
     })), // ignore dot (hidden) files
     ...when(analyze, new BundleAnalyzerPlugin()),
@@ -264,6 +265,6 @@ module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, h
      * remove those before the webpack build. In that case consider disabling the plugin, and instead use something like
      * `del` (https://www.npmjs.com/package/del), or `rimraf` (https://www.npmjs.com/package/rimraf).
      */
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
   ]
 });
