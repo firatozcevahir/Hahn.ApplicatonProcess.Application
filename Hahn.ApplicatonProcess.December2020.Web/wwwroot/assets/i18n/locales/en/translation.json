@@ -1,3 +1,16 @@
 {
-  "home":"ev"
+  "header": {
+    "routes":{
+      "home": "My App",
+      "about": "About"
+    },
+    "language": "Language",
+    "lang": {
+      "german": "German",
+      "english": "English",
+      "turkish": "Turkish"
+    },
+    "swaggerui": "Swagger UI"
+  },
+  "home": "home"
 }

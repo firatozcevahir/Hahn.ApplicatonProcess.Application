@@ -5,6 +5,9 @@ import { PLATFORM } from 'aurelia-pal';
 import { I18N, TCustomAttribute } from 'aurelia-i18n';
 import Backend from 'i18next-xhr-backend';
 
+import {AppRouter} from 'aurelia-router';
+import {EventAggregator} from 'aurelia-event-aggregator';
+
 export function configure(aurelia: Aurelia): void {
   aurelia.use
     .standardConfiguration()
@@ -12,7 +15,7 @@ export function configure(aurelia: Aurelia): void {
 
   aurelia.use
     .developmentLogging(environment.debug ? 'debug' : 'warn')
-    .plugin(PLATFORM.moduleName('aurelia-i18n'), (instance) => {
+    .plugin(PLATFORM.moduleName('aurelia-i18n'), (instance: I18N) => {
       const aliases = ['t', 'i18n'];
       // add aliases for 't' attribute
       TCustomAttribute.configureAliases(aliases);
@@ -28,7 +31,17 @@ export function configure(aurelia: Aurelia): void {
         },
         attributes: aliases,
         lng: 'en',
+        fallbackLng: 'en',
         debug: false
+      }).then(() => {
+        const router = aurelia.container.get(AppRouter);
+        router.transformTitle = title => instance.tr(title);
+
+        const eventAggregator = aurelia.container.get(EventAggregator);
+        eventAggregator.subscribe('i18n:locale:changed', () => {
+          router.updateTitle();
+          console.log('title updated');
+        });
       });
     });
 

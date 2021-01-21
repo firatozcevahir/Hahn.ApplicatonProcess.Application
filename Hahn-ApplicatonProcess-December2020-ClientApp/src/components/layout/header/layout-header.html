@@ -1,23 +1,43 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Lang
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#" onclick.call="changeLang('en')">En</a>
-            <a class="dropdown-item" href="#" onclick.call="changeLang('tr')">Tr</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item" class="${route.isActive ? 'active' : ''}" repeat.for="route of router.navigation">
+          <a class="nav-link" href="#" href.bind="route.href">${route.title & t}</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <div class="dropdown">
+            <button class="btn btn-light dropdown-toggle" type="button" id="langdropdown" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              <span class="iconify" data-icon="flat-color-icons:globe" data-inline="false"></span>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="langdropdown">
+              <button class="dropdown-item" type="button" onclick.call="changeLang('de')">
+                ${ 'header.lang.german' & t}
+              </button>
+              <button class="dropdown-item" type="button" onclick.call="changeLang('en')">
+                ${ 'header.lang.english' & t}
+              </button>
+              <button class="dropdown-item" type="button" onclick.call="changeLang('tr')">
+                ${ 'header.lang.turkish' & t}
+              </button>
+            </div>
           </div>
         </li>
-        <a class="nav-item nav-link" href="/swagger" target="_blank">Swagger UI</a>
-      </div>
+        <li class="nav-item">
+          <a class="nav-link" href="/swagger" target="_blank">${ 'header.swaggerui' & t}</a>
+        </li>
+      </ul>
     </div>
   </nav>
+
+  
 </template>
+
