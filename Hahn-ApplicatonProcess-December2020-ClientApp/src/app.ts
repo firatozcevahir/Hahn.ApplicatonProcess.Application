@@ -1,7 +1,7 @@
 
 import routes from 'router';
 import { Router, RouterConfiguration } from 'aurelia-router';
-import { inject } from "aurelia-framework";
+import { inject } from 'aurelia-framework';
 import { I18N } from 'aurelia-i18n';
 import { DataService } from '@services/data-service';
 

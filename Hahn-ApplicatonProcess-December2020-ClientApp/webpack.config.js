@@ -43,7 +43,7 @@ module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, h
       // out-of-date dependencies on 3rd party aurelia plugins
       'aurelia-binding': path.resolve(__dirname, 'node_modules/aurelia-binding')
     },
-    plugins: [new TsconfigPathsPlugin({ configFile: "tsconfig.json" })]
+    plugins: [new TsconfigPathsPlugin({ configFile: 'tsconfig.json' })]
   },
   entry: {
     app: [

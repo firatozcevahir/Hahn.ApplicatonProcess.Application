@@ -1,7 +1,10 @@
-import { I18N } from "aurelia-i18n";
+import { I18N } from 'aurelia-i18n';
 import { bindable } from 'aurelia-framework';
 import { Router } from 'aurelia-router';
 
+import { inject } from 'aurelia-framework';
+
+@inject(I18N)
 export class LayoutHeader {
 
   @bindable router: Router;

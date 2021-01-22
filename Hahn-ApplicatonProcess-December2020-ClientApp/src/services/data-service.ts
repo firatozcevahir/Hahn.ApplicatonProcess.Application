@@ -1,6 +1,6 @@
-import { HttpClient, HttpResponseMessage } from "aurelia-http-client"; // or 'aurelia-fetch-client' if you want to use fetch
-import { inject } from "aurelia-framework";
-import { config } from "@helpers/constants";
+import { HttpClient, HttpResponseMessage } from 'aurelia-http-client'; 
+import { inject } from 'aurelia-framework';
+import { config } from '@helpers/constants';
 
 @inject(HttpClient)
 export class DataService {
