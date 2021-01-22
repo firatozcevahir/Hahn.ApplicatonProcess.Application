@@ -16,7 +16,7 @@ namespace Hahn.ApplicatonProcess.December2020.Web.Controllers
             {
                 Success = false,
                 Message = "Validation Errors",
-                Content = ModelState.Values.SelectMany(v => v.Errors).ToList()
+                Data = ModelState.Values.SelectMany(v => v.Errors).ToList()
             };
         }
     }

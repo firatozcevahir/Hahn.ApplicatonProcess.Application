@@ -75,7 +75,7 @@ namespace Hahn.ApplicatonProcess.December2020.Web.Controllers
                 var result = await _service.AddApplicant(applicant);
                 if (result.Success)
                 {
-                    return Created($"get-applicant/{result.Content}", result);
+                    return Created($"get-applicant/{result.Data}", result);
                 }
                 else
                 {

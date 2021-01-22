@@ -7,16 +7,16 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item" class="${route.isActive ? 'active' : ''}" repeat.for="route of router.navigation">
+        <li class="nav-item ${route.isActive ? 'active' : ''}" repeat.for="route of router.navigation">
           <a class="nav-link" href="#" href.bind="route.href">${route.title & t}</a>
         </li>
       </ul>
       <ul class="navbar-nav">
         <li class="nav-item">
           <div class="dropdown">
-            <button class="btn btn-light dropdown-toggle" type="button" id="langdropdown" data-toggle="dropdown"
+            <button class="btn btn-light" type="button" id="langdropdown" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
-              <span class="iconify" data-icon="flat-color-icons:globe" data-inline="false"></span>
+              <span class="iconify iconify-big" data-icon="flat-color-icons:globe" data-inline="false"></span>
             </button>
             <div class="dropdown-menu" aria-labelledby="langdropdown">
               <button class="dropdown-item" type="button" onclick.call="changeLang('de')">
@@ -32,7 +32,7 @@
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/swagger" target="_blank">${ 'header.swaggerui' & t}</a>
+          <a class="nav-link" href.bind="swaggerUrl" target="_blank">${ 'header.swaggerui' & t}</a>
         </li>
       </ul>
     </div>

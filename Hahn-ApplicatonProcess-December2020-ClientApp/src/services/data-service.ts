@@ -1,6 +1,7 @@
-import { HttpClient, HttpResponseMessage } from 'aurelia-http-client'; 
+import { HttpClient, HttpResponseMessage } from 'aurelia-http-client';
 import { inject } from 'aurelia-framework';
 import { config } from '@helpers/constants';
+import { IApiResponse } from '@models/api-response';
 
 @inject(HttpClient)
 export class DataService {
@@ -9,8 +10,8 @@ export class DataService {
     console.log(this.api);
   }
 
-  public get(service: string): Promise<HttpResponseMessage> {
+  public async get<T>(service: string): Promise<IApiResponse<T>> {
     const url = `${this.api}/${service}`;
-    return this.http.get(url);
+    return (await this.http.get(url)).content as IApiResponse<T>;
   }
 }

@@ -38,7 +38,7 @@ namespace Hahn.ApplicatonProcess.December2020.Domain.DataService
                 return new ApiResponse<Applicant>
                 {
                     Success = true,
-                    Content = Mapper.MapEntityToDto(content)
+                    Data = Mapper.MapEntityToDto(content)
                 };
             }
             catch (Exception ex)
@@ -55,7 +55,7 @@ namespace Hahn.ApplicatonProcess.December2020.Domain.DataService
                 return new ApiResponse<IList<Applicant>>
                 {
                     Success = true,
-                    Content = content
+                    Data = content
                 };
             }
             catch (Exception ex)
@@ -85,7 +85,7 @@ namespace Hahn.ApplicatonProcess.December2020.Domain.DataService
                     {
                         Message = $"Successfully Created",
                         Success = true,
-                        Content = entity.ID
+                        Data = entity.ID
                     };
                 }
                 else

@@ -1,8 +1,21 @@
 {
+  "base": {
+    "true": "Doğru",
+    "false": "Yanlış",
+    "yes": "Evet",
+    "no": "Hayır",
+    "ok": "Tamam",
+    "reset": "Sıfırla",
+    "send": "Gönder",
+    "cancel": "İptal",
+    "search": "Ara"
+  },
+
   "header": {
-    "routes":{
+    "routes": {
       "home": "Uygulamam",
-      "about": "Hakkında"
+      "about": "Hakkında",
+      "addapplicant":"Kişi Ekle"
     },
     "language": "Dil",
     "lang": {
@@ -12,5 +25,21 @@
     },
     "swaggerui": "Swagger UI"
   },
-  "home": "anasayfa"
+  "home": {
+    "title": "Title of Home Component"
+  },
+
+  "data": {
+    "title": {
+      "Id": "Kimlik",
+      "name": "Ad",
+      "familyname": "Soyad",
+      "address": "Adres",
+      "countryoforigin": "Menşei Ülke",
+      "emailaddress": "E-Posta Adresi",
+      "age": "Yaş",
+      "ishired": "İşe Alındı mı?"
+    },
+    "total": "Toplam"
+  }
 }

@@ -1,3 +1,78 @@
 <template>
-  <h1>HOME</h1>
+  <require from="../shared/loader/loader"></require>
+
+  <div class="row">
+    <div class="col-6">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="search-icon">
+            <span class="iconify" data-icon="codicon:search" data-inline="false"></span>
+          </span>
+        </div>
+        <input
+         type="text"
+         class="form-control" 
+         placeholder="${ 'base.search' & t}" 
+         aria-label="${ 'base.search' & t}" aria-describedby="search-icon"
+         value.bind="searchTerm"
+         input.delegate="handleSearch()"
+         >
+      </div>
+    </div>
+    <div class="col-6 text-right">
+      <button type="button" class="btn btn-icon btn-outline-info" click.trigger="loadData()">
+        <span class="iconify" data-icon="ic:twotone-refresh" data-inline="false"></span>
+      </button>
+      <a class="btn btn-outline-success" href="#/applicant/add">New</a>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col">
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">${ 'data.title.name' & t}</th>
+              <th scope="col">${ 'data.title.familyname' & t}</th>
+              <th scope="col">${ 'data.title.address' & t}</th>
+              <th scope="col">${ 'data.title.countryoforigin' & t}</th>
+              <th scope="col">${ 'data.title.emailaddress' & t}</th>
+              <th scope="col">${ 'data.title.age' & t}</th>
+              <th scope="col">${ 'data.title.ishired' & t}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr if.bind="isRequesting">
+              <td colspan="8">
+                <loader></loader>
+              </td>
+            </tr>
+            <tr if.bind="!isRequesting && isError">
+              <td colspan="8">Error will be here</td>
+            </tr>
+            <tr if.bind="!isRequesting && !isError" repeat.for="applicant of filteredApplicants">
+              <td>${ applicant.id }</td>
+              <td>${ applicant.name }</td>
+              <td>${ applicant.familyName }</td>
+              <td>${ applicant.address }</td>
+              <td>${ applicant.countryOfOrigin }</td>
+              <td>${ applicant.emailAddress }</td>
+              <td>${ applicant.age }</td>
+              <td class="${ applicant.hired ? 'text-success':'text-danger' }">
+                ${ ('base.' + (applicant.hired ? 'yes': 'no')) & t}
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="8" class="text-right">
+                <strong>${ 'data.total' & t }</strong> ${ filteredApplicants.length }
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
 </template>

@@ -17,7 +17,8 @@
     "paths": {      
       "@environment": ["../config/environment.json"],
       "@helpers/*":["./helpers/*"],
-      "@services/*": ["./services/*"]
+      "@services/*": ["./services/*"],
+      "@models/*": ["./models/*"]
     },
     "moduleResolution": "node",
     "baseUrl": "src",

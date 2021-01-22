@@ -1,9 +1,22 @@
 {
+  "base": {
+    "true": "True",
+    "false": "False",
+    "yes": "Yes",
+    "no": "No",
+    "ok": "Ok",
+    "reset": "Reset",
+    "send": "Send",
+    "cancel": "Cancel",
+    "search": "Search"
+  },
+
   "header": {
-    "routes":{
+    "routes": {
       "home": "My App",
-      "about": "About"
-    },
+      "about": "About",
+      "addapplicant":"Add Applicant"
+    },    
     "language": "Language",
     "lang": {
       "german": "German",
@@ -12,5 +25,22 @@
     },
     "swaggerui": "Swagger UI"
   },
-  "home": "home"
+
+  "home": {
+    "title": "Title of Home Component"
+  },
+
+  "data": {
+    "title": {
+      "id": "Id",
+      "name": "Name",
+      "familyname": "Family Name",
+      "address": "Address",
+      "countryoforigin": "Country of Origin",
+      "emailaddress": "E-Mail Address",
+      "age": "Age",
+      "ishired": "Is Hired?"
+    },
+    "total": "Total"
+  }
 }

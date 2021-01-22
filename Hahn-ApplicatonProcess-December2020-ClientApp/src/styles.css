@@ -1,4 +1,15 @@
-.iconify {
-  width: 24px;
-  height: 24px;
+.iconify-big {
+  width: 30px;
+  height: 30px;
+}
+
+/* to show iconify  icons on the middle */
+.btn-icon {
+  padding-bottom: 8px;
+  padding-top: 4px;
+}
+
+.btn-icon .iconify {
+  width: 20px;
+  height: 20px;
 }

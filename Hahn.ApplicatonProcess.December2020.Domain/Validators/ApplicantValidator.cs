@@ -17,7 +17,7 @@ namespace Hahn.ApplicatonProcess.December2020.Domain.Validators
             RuleFor(a => a.CountryOfOrigin).MustAsync(async (c, cancellationToken) =>
             {
                 using var client = new HttpClient();
-                var result = await client.GetAsync($"https://restcountries.eu/rest/v2/name/{c}?fullText=true");
+                var result = await client.GetAsync($"https://restcountries.eu/rest/v2/name/{c}?fullText=true", cancellationToken);
 
                 return result.StatusCode == HttpStatusCode.OK;
             }).WithMessage($"Provided country is not valid");

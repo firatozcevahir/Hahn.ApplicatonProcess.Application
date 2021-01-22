@@ -1,19 +1,16 @@
 
-import routes from 'router';
-import { Router, RouterConfiguration } from 'aurelia-router';
 import { inject } from 'aurelia-framework';
+import { Router, RouterConfiguration } from 'aurelia-router';
 import { I18N } from 'aurelia-i18n';
-import { DataService } from '@services/data-service';
+import routes from 'router';
 
-// @inject(DataService, I18N)
-@inject(I18N, DataService)
+@inject(I18N)
 export class App {
   public message = 'Hello World!';
   public router: Router;
 
   constructor(
-    private i18n: I18N,
-    private dataService: DataService
+    private i18n: I18N
   ) {
     this.i18n = i18n;
     console.log('i18n', this.i18n);
@@ -22,12 +19,6 @@ export class App {
       .then(() => {
         console.log('locale is set');
       });
-
-    this.dataService.get('app/applicant/get').then((response) => {
-      console.log(response.content);
-    }).catch((error) => {
-      console.log('this will be fired', error);
-    });
   }
 
   public configureRouter(config: RouterConfiguration, router: Router): void {

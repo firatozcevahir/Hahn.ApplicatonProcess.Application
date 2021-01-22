@@ -11,6 +11,6 @@ namespace Hahn.ApplicatonProcess.December2020.Domain.ResponseModels
         public string Message { get; set; }
         public byte MessageCode { get; set; }
         public bool Success { get; set; }
-        public T Content { get; set; }
+        public T Data { get; set; }
     }
 }
