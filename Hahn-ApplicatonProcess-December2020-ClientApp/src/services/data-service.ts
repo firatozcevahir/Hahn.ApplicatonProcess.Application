@@ -1,6 +1,6 @@
 import { HttpClient } from 'aurelia-http-client';
 import { inject } from 'aurelia-framework';
-import { config } from '@helpers/constants';
+import { config } from '@constants';
 import { IApiResponse } from '@models/api-response';
 
 @inject(HttpClient)

@@ -1,9 +1,11 @@
 import { inject } from 'aurelia-framework';
+import { HttpResponseMessage } from 'aurelia-http-client';
+
 import { DataService } from '@services/data-service';
 import { Router } from 'aurelia-router';
+import { FormHelper } from '@helpers/form-helper';
 
 import { IApplicant } from '@models/applicant-model';
-import { HttpResponseMessage } from 'aurelia-http-client';
 
 
 @inject(DataService, Router)
@@ -19,7 +21,8 @@ export class EditApplicant {
 
   constructor(
     private dataService: DataService,
-    private router: Router
+    private router: Router,
+    private formHelper: FormHelper
   ) { }
 
   activate(params: { id: string }): void {
@@ -37,12 +40,12 @@ export class EditApplicant {
   public getApplicant(): void {
     this.dataService.get<IApplicant>(`app/applicant/get/${this.id}`).then((response) => {
       this.applicant = response.data;
-      console.log(this.applicant);      
+      console.log(this.applicant);
     }).catch((error: HttpResponseMessage) => {
       this.isError = true;
-      if(error.statusCode === 0){
+      if (error.statusCode === 0) {
         // Server Error
-      } else if(error.statusCode === 400){
+      } else if (error.statusCode === 400) {
         // server returned bad request
       }
       // console.log('this will be fired', error);
@@ -52,5 +55,16 @@ export class EditApplicant {
       this.isRequesting = false;
     });
   }
+
+  public save(): void {
+    //
+  }
+
+
+  public get test(): boolean {
+    return this.formHelper.checkIfEmpty(this.applicant);
+  }
+
+
 
 }

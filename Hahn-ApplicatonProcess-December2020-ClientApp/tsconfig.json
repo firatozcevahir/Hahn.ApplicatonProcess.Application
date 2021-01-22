@@ -17,6 +17,7 @@
     "paths": {      
       "@environment": ["../config/environment.json"],
       "@helpers/*":["./helpers/*"],
+      "@constants":["./constants/constants"],
       "@services/*": ["./services/*"],
       "@models/*": ["./models/*"]
     },

@@ -1,7 +1,7 @@
 import { inject } from 'aurelia-framework';
 import { I18N } from 'aurelia-i18n';
 import { Router } from 'aurelia-router';
-import { config } from '@helpers/constants';
+import { config } from '@constants';
 
 @inject(I18N, Router)
 export class LayoutHeader {

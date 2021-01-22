@@ -12,7 +12,7 @@ export default [
     route: 'about',
     name: 'about',
     moduleId: PLATFORM.moduleName('./components/about/about'),
-    nav: true,
+    nav: false,
     title: 'header.routes.about'
   },
   {
