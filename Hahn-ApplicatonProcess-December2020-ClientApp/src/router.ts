@@ -16,10 +16,17 @@ export default [
     title: 'header.routes.about'
   },
   {
-    route: 'applicant/add',
+    route: 'applicant/edit',
     name: 'addapplicant',
-    moduleId: PLATFORM.moduleName('./components/applicant/add-applicant'),
-    nav: false,
+    moduleId: PLATFORM.moduleName('./components/applicant/edit-applicant'),
+    nav: true,
     title: 'header.routes.addapplicant'
+  },
+  {
+    route: 'applicant/edit/:id',
+    name: 'editapplicant',
+    moduleId: PLATFORM.moduleName('./components/applicant/edit-applicant'),
+    nav: false,
+    title: 'header.routes.editapplicant'
   }
 ];

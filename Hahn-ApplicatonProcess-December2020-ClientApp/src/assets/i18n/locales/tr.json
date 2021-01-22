@@ -8,14 +8,17 @@
     "reset": "Sıfırla",
     "send": "Gönder",
     "cancel": "İptal",
-    "search": "Ara"
+    "search": "Ara",
+    "new":"Yeni",
+    "update": "Güncelle"
   },
 
   "header": {
     "routes": {
       "home": "Uygulamam",
       "about": "Hakkında",
-      "addapplicant":"Kişi Ekle"
+      "addapplicant":"Kişi Ekle",
+      "editapplicant":"Kişi Düzenle"
     },
     "language": "Dil",
     "lang": {
@@ -40,6 +43,9 @@
       "age": "Yaş",
       "ishired": "İşe Alındı mı?"
     },
-    "total": "Toplam"
+    "total": "Toplam",
+    "actions":"İşlemler",
+    "edit":"Düzenle",
+    "delete":"Sil"
   }
 }

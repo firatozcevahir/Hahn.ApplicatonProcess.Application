@@ -1,4 +1,4 @@
-
+import { PLATFORM } from 'aurelia-pal';
 import { inject } from 'aurelia-framework';
 import { Router, RouterConfiguration } from 'aurelia-router';
 import { I18N } from 'aurelia-i18n';
@@ -24,6 +24,7 @@ export class App {
   public configureRouter(config: RouterConfiguration, router: Router): void {
     config.title = 'Aurelia';
     config.map(routes);
+    config.mapUnknownRoutes(PLATFORM.moduleName('./components/home/home'));
     this.router = router;
   }
 }

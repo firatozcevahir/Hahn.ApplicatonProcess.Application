@@ -25,7 +25,11 @@ export class Home {
     }).catch((error) => {
       // TODO: Handle Errors
       this.isError = true;
-      console.log('this will be fired', error);
+      if(error.statusCode === 0){
+        // Server Error
+      } else if(error.statusCode === 400){
+        // server returned bad request
+      }
     }).finally(() => {
       this.isRequesting = false;
     });

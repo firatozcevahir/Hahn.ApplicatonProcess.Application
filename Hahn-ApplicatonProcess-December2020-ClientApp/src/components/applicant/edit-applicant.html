@@ -1,0 +1,105 @@
+<template>
+  <div class="container w-50 shadow-lg p-4 rounded">
+    <form>
+      <div class="form-row">
+        <div class="col-md-4 mb-3">
+          <label for="name">${ 'data.title.name' & t }</label>
+          <input type="text" 
+          class="form-control is-valid"
+          id="name"
+          placeholder="${ 'data.title.name' & t }"
+          value.bind="applicant.name"
+          required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="familyName">${ 'data.title.familyname' & t }</label>
+          <input type="text" 
+          class="form-control is-valid" 
+          id="familyName" 
+          placeholder="${ 'data.title.familyname' & t }"          
+          value.bind="applicant.familyName"
+          required>
+
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+        </div>
+        <div class="col-md-2 mb-3">
+          <label for="validationServer03">${ 'data.title.age' & t }</label>
+          <input type="text" 
+          class="form-control is-valid" 
+          id="validationServer03"
+          placeholder="${ 'data.title.age' & t }"                     
+          value.bind="applicant.age"
+          required>
+
+          <div class="invalid-feedback">
+            Age must be between 25 - 60
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-12 mb-3">
+          <label for="emailAddress">${ 'data.title.emailaddress' & t }</label>
+          <input type="text" 
+          class="form-control is-invalid" 
+          id="emailAddress"
+          placeholder="${ 'data.title.emailaddress' & t }"                    
+          value.bind="applicant.emailAddress"
+          required>
+
+          <div class="invalid-feedback">
+            Email is invalid
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-8 mb-3">
+          <label for="validationServer04">${ 'data.title.address' & t}</label>
+          <input type="text" 
+          class="form-control 
+          is-invalid" 
+          id="validationServer04"
+          placeholder="${ 'data.title.address' & t}"
+          value.bind="applicant.address"
+          required>
+
+          <div class="invalid-feedback">
+            Please provide a valid address.
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="validationServer05">${ 'data.title.countryoforigin' & t}</label>
+          <input type="text" 
+          class="form-control is-invalid"
+          id="validationServer05"
+          placeholder="${ 'data.title.countryoforigin' & t}"
+          value.bind="applicant.countryOfOrigin"
+          required>
+          <div class="invalid-feedback">
+            Please provide a valid country.
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-check">
+          <input class="form-check-input" 
+          type="checkbox"
+          id="isHired" 
+          checked.bind="applicant.hired"
+          required>
+          <label class="form-check-label" for="isHired">
+            ${ 'data.title.ishired' & t}
+          </label>
+        </div>
+      </div>
+      <div class="form-group text-right">
+        <button class="btn btn-outline-warning" type="submit">${ 'base.reset' & t}</button>
+        <button class="btn btn-primary" type="submit">${ (editMode ? 'base.update' : 'base.send') & t}</button>
+      </div>
+    </form>
+  </div>
+</template>

@@ -8,14 +8,17 @@
     "reset": "Reset",
     "send": "Send",
     "cancel": "Cancel",
-    "search": "Search"
+    "search": "Search",
+    "new":"New",
+    "update": "Update"
   },
 
   "header": {
     "routes": {
       "home": "My App",
       "about": "About",
-      "addapplicant":"Add Applicant"
+      "addapplicant":"Add Applicant",
+      "editapplicant":"Edit Applicant"
     },
     "language": "Language",
     "lang": {
@@ -41,6 +44,9 @@
       "age": "Age",
       "ishired": "Is Hired?"
     },
-    "total": "Total"
+    "total": "Total",
+    "actions":"Actions",
+    "edit":"Edit",
+    "delete":"Delete"
   }
 }
