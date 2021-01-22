@@ -16,6 +16,7 @@ export function configure(aurelia: Aurelia): void {
     console.log(environment.debug);
   aurelia.use
     .developmentLogging(environment.debug ? 'debug' : 'warn')
+    .plugin(PLATFORM.moduleName('aurelia-validation'))
     .plugin(PLATFORM.moduleName('aurelia-i18n'), (instance: I18N) => {
       const aliases = ['t', 'i18n'];
       TCustomAttribute.configureAliases(aliases);

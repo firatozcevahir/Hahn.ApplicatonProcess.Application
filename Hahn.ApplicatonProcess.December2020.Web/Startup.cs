@@ -132,8 +132,6 @@ namespace Hahn.ApplicatonProcess.December2020.Web
 
             app.UseSpa(spa =>
             {
-                // spa.Options.SourcePath = "wwwroot";
-
 
                 if (env.IsDevelopment())
                 {

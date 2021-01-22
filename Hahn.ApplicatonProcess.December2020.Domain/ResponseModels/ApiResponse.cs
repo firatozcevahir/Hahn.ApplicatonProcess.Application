@@ -6,11 +6,18 @@ using System.Threading.Tasks;
 
 namespace Hahn.ApplicatonProcess.December2020.Domain.ResponseModels
 {
-    public class ApiResponse<T>
+    public class BaseApiResponse
     {
         public string Message { get; set; }
         public byte MessageCode { get; set; }
         public bool Success { get; set; }
+    }
+    public class ApiResponse<T>: BaseApiResponse
+    {
         public T Data { get; set; }
+    }
+
+    public class ApiResponse:BaseApiResponse
+    {
     }
 }

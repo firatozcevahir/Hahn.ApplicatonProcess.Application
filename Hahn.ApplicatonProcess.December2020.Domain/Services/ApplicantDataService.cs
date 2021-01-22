@@ -110,7 +110,8 @@ namespace Hahn.ApplicatonProcess.December2020.Domain.DataService
                 return new ApiResponse<int>
                 {
                     Message = $"Applicant with ID of {applicant.ID} Doesn't Exist",
-                    Success = false
+                    Success = false,
+                    Data = applicant.ID
                 };
             }
 
@@ -132,6 +133,7 @@ namespace Hahn.ApplicatonProcess.December2020.Domain.DataService
                     {
                         Message = $"Successfully Updated",
                         Success = true,
+                        Data = applicant.ID
                     };
                 }
                 else
@@ -139,7 +141,8 @@ namespace Hahn.ApplicatonProcess.December2020.Domain.DataService
                     return new ApiResponse<int>
                     {
                         Message = $"An Error occured while updating",
-                        Success = false
+                        Success = false,
+                        Data = 0
                     };
                 }
             }
@@ -148,7 +151,8 @@ namespace Hahn.ApplicatonProcess.December2020.Domain.DataService
                 return new ApiResponse<int>
                 {
                     Message = $"Exception: {ex.Message}",
-                    Success = false
+                    Success = false,
+                    Data = 0
                 };
             }
         }
@@ -161,7 +165,8 @@ namespace Hahn.ApplicatonProcess.December2020.Domain.DataService
                 return new ApiResponse<int>
                 {
                     Message = $"ID {id} Does not Exist",
-                    Success = false
+                    Success = false,
+                    Data = id
                 };
             }
 
@@ -176,6 +181,7 @@ namespace Hahn.ApplicatonProcess.December2020.Domain.DataService
                     {
                         Message = $"Successfully Deleted",
                         Success = true,
+                        Data = id
                     };
                 }
                 else
@@ -183,7 +189,8 @@ namespace Hahn.ApplicatonProcess.December2020.Domain.DataService
                     return new ApiResponse<int>
                     {
                         Message = $"An Error occured while Deleting",
-                        Success = false
+                        Success = false,
+                        Data = id
                     };
                 }
             }
