@@ -30,10 +30,12 @@ export class EditApplicant {
   ) {
     this.rules = this.getValidationRules();
     this.controller = this.controllerFactory.createForCurrentScope();
-    this.controller.validateTrigger = validateTrigger.change;
+    this.controller.validateTrigger = validateTrigger.blur;
     this.controller.addRenderer(new BootstrapFormRenderer());
+    
     this.controller.subscribe((res) =>{
       console.log(res);
+      console.log('errors', this.controller.errors);
     });
   }
 
@@ -42,6 +44,7 @@ export class EditApplicant {
 
     this.id = params.id;
     this.editMode = params.id !== undefined;
+
 
     if (this.editMode) {
       this.getApplicant();
@@ -87,18 +90,21 @@ export class EditApplicant {
       this.applicant = null;
       return;
     }
-    this.applicant.name = "";
+    this.applicant.name = '';
     this.applicant.hired = true;
-    this.applicant.address = "";
+    this.applicant.address = '';
     this.applicant.age = 0;
-    this.applicant.countryOfOrigin = "";
-    this.applicant.emailAddress = "";
-    this.applicant.familyName = "";
+    this.applicant.countryOfOrigin = '';
+    this.applicant.emailAddress = '';
+    this.applicant.familyName = '';
   }
 
   private getValidationRules() {
    return ValidationRules
-    .ensure('name').required().minLength(3).withMessage('Test Message Validation')
+    .ensure('name').required().minLength(5).withMessage('NAme önemli')
+    .ensure('familyName').required().withMessage('family adı gerkeli').minLength(20).withMessage('Family adı önemli')
+    .ensure('age').required().min(25).max(60)
+    .ensure('test').required()
     .rules;
   }
 }

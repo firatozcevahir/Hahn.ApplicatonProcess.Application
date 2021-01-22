@@ -20,7 +20,7 @@
             class="form-control is-valid"
             id="familyName"
             placeholder="${ 'data.title.familyname' & t }"
-            value.bind="applicant.familyName"
+            value.bind="applicant.familyName & validate:rules"
             required
           />
 
@@ -33,7 +33,7 @@
             class="form-control is-valid"
             id="validationServer03"
             placeholder="${ 'data.title.age' & t }"
-            value.bind="applicant.age"
+            value.bind="applicant.age & validate:rules"
             required
           />
 
@@ -103,10 +103,13 @@
           class="btn btn-outline-warning"
           type="button"
           click.trigger="resetForm()"
-          disabled.bind="hasValue">
+          disabled.bind="!hasValue">
           ${ 'base.reset' & t}
         </button>
-        <button class="btn btn-primary" type="submit">
+        <button 
+        class="btn btn-primary"
+        type="submit"
+        disabled.bind="controller.errors.length > 0 || !hasValue">
           ${ (editMode ? 'base.update' : 'base.send') & t}
         </button>
       </div>

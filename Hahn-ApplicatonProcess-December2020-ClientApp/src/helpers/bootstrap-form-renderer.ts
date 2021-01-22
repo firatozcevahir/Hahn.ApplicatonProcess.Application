@@ -40,7 +40,6 @@ export class BootstrapFormRenderer {
     message.textContent = result.message;
     message.id = `validation-message-${result.id}`;
     formGroup.appendChild(message);
-    console.log('add fired');
   }
 
   remove(element: Element, result: ValidateResult): void {
@@ -63,8 +62,6 @@ export class BootstrapFormRenderer {
     //     element.classList.remove("is-invalid");
     //   }
     // }
-    
-    console.log('remove fired');
   }
 }
 
