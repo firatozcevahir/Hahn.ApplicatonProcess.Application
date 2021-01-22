@@ -30,22 +30,6 @@ namespace Hahn.ApplicatonProcess.December2020.Web.Controllers
         }
 
         #region GetMethods
-        [HttpGet]
-        [Route("get/{id}")]
-        public async Task<IActionResult> Get(int id)
-        {
-            // TODO: HANDLE LOGS
-            var result = await _service.GetApplicant(id);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            else
-            {
-                _logger.LogWarning($"Err: {result.Message}. ErrCode: {result.MessageCode}");
-                return BadRequest(result);
-            }
-        }
 
         [HttpGet]
         [Route("get")]
@@ -59,6 +43,23 @@ namespace Hahn.ApplicatonProcess.December2020.Web.Controllers
             }
             else
             {
+                return BadRequest(result);
+            }
+        }
+
+        [HttpGet]
+        [Route("get/{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            // TODO: HANDLE LOGS
+            var result = await _service.GetApplicant(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                _logger.LogWarning($"Err: {result.Message}. ErrCode: {result.MessageCode}");
                 return BadRequest(result);
             }
         }

@@ -1,18 +1,16 @@
-import { HttpClient } from "aurelia-http-client"; // or 'aurelia-fetch-client' if you want to use fetch
+import { HttpClient, HttpResponseMessage } from "aurelia-http-client"; // or 'aurelia-fetch-client' if you want to use fetch
 import { inject } from "aurelia-framework";
+import { config } from "@helpers/constants";
 
 @inject(HttpClient)
 export class DataService {
-  public api =
-    location.protocol +
-    "//" +
-    location.hostname +
-    (location.port ? ":" + location.port : "");
-  constructor(private http: HttpClient) {}
+  public api = config.api;
+  constructor(private http: HttpClient) {
+    console.log(this.api);
+  }
 
-  public GetApplicants(): void {
-    this.http.get("http://localhost:7000/app/applicant/get").then((res) => {
-      console.log(res);
-    });
+  public get(service: string): Promise<HttpResponseMessage> {
+    const url = `${this.api}/${service}`;
+    return this.http.get(url);
   }
 }

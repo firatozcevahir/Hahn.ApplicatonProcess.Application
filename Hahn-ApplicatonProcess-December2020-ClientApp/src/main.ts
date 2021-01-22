@@ -1,5 +1,5 @@
 import { Aurelia } from 'aurelia-framework';
-import * as environment from '../config/environment.json';
+import * as environment from '@environment';
 import { PLATFORM } from 'aurelia-pal';
 
 import { I18N, TCustomAttribute } from 'aurelia-i18n';
@@ -13,6 +13,7 @@ export function configure(aurelia: Aurelia): void {
     .standardConfiguration()
     .feature(PLATFORM.moduleName('resources/index'));
 
+    console.log(environment.debug);
   aurelia.use
     .developmentLogging(environment.debug ? 'debug' : 'warn')
     .plugin(PLATFORM.moduleName('aurelia-i18n'), (instance: I18N) => {
