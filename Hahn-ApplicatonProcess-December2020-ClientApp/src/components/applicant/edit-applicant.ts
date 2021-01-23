@@ -42,7 +42,7 @@ export class EditApplicant {
   }
 
   public getApplicant(): void {
-
+    this.isRequesting = true;
     this.dataService
       .get<Applicant>(`app/applicant/${this.id}`)
       .then((response) => {
@@ -58,6 +58,12 @@ export class EditApplicant {
   }
 
   public save(): void {
+
+    if(!this.validator.isValid){
+      return;
+    }
+
+    this.isRequesting = true;
     this.validationErrors = false;
       this.dataService.post('app/applicant', this.applicant, this.editMode).then((res) =>{
         if(!this.editMode){
@@ -70,6 +76,8 @@ export class EditApplicant {
         } else {
           // 0 server error
         }
+      }).finally(() =>{
+        this.isRequesting = false;
       });
   }
 

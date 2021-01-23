@@ -51,12 +51,19 @@
     "edit":"Düzenle",
     "delete":"Sil",
     "errors": {
+      "name_required":"İsim gerekli",
       "name_greater_than":"İsim en az {{param}} karakter olmalıdır",
+      "familyname_required":"Soyad gerekli",
       "familyname_greater_than":"Soyad en az {{param}} karakter olmalıdır",
+      "address_required":"Adres gerekli",
       "address_greater_than":"Adres en az {{param}} karakter olmalıdır",
+      "email_address_required":"E-posta adresi gerekli",
       "invalid_email_address":"E-posta geçersiz",
+      "age_invalid":"Yaş geçersiz",
       "age_between": "Yaş {{param}} aralığında olmalıdır",
-      "invalid_country": "Geçersiz Ülke"
+      "country_required":"Ülke gerekli",
+      "country_greater_than":"Ülke en az {{param}} karakter olmalıdır",
+      "invalid_country": "Geçersiz ülke"
     }
   }
 }

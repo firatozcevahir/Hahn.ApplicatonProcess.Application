@@ -1,6 +1,11 @@
 import { RenderInstruction, ValidateResult } from 'aurelia-validation';
+import { inject } from 'aurelia-framework';
+import { Enhancer } from '@helpers/enhancer';
 
+@inject(Enhancer)
 export class BootstrapFormRenderer {
+  constructor(private enhancer: Enhancer) {}
+
   render(instruction: RenderInstruction): void {
     for (const { result, elements } of instruction.unrender) {
       for (const element of elements) {
@@ -29,22 +34,26 @@ export class BootstrapFormRenderer {
     }
 
     // check if help block added already
+    let feedbackDiv = formGroup.querySelector('.invalid-feedback');
+    const msg = result.message.split('|');
+    const txt = '${\'' + msg[0] + '\' & t' + (msg[1] ? ':{param: \'' + msg[1] + '\'}}' : '}');
 
-    let message = formGroup.querySelector('.invalid-feedback');
-    if(message){
-      message.textContent = result.message;
-      message.id = `validation-message-${result.id}`;
+    if (feedbackDiv) {
+      feedbackDiv.innerHTML = txt;
+      feedbackDiv.id = `validation-message-${result.id}`;
+      this.enhancer.enhance(this, feedbackDiv);
       return;
     }
-    
-    // add help-block
-    message = document.createElement('div');
-    message.className = 'invalid-feedback';
-    message.textContent = result.message;
-    message.id = `validation-message-${result.id}`;
-    formGroup.appendChild(message);
 
-    // update translations on the element
+    // add help-block
+    feedbackDiv = document.createElement('div');
+    feedbackDiv.className = 'invalid-feedback';
+    feedbackDiv.innerHTML = txt;
+    feedbackDiv.id = `validation-message-${result.id}`;
+
+    // because of creating elements dynamically, needed to enhance the element
+    this.enhancer.enhance(this, feedbackDiv);
+    formGroup.appendChild(feedbackDiv);
   }
 
   remove(element: Element, result: ValidateResult): void {
