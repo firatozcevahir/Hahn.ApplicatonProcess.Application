@@ -28,8 +28,17 @@ export class BootstrapFormRenderer {
       return;
     }
 
+    // check if help block added already
+
+    let message = formGroup.querySelector('.invalid-feedback');
+    if(message){
+      message.textContent = result.message;
+      message.id = `validation-message-${result.id}`;
+      return;
+    }
+    
     // add help-block
-    const message = document.createElement('div');
+    message = document.createElement('div');
     message.className = 'invalid-feedback';
     message.textContent = result.message;
     message.id = `validation-message-${result.id}`;

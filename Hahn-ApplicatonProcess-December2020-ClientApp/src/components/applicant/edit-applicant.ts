@@ -86,7 +86,7 @@ export class EditApplicant {
   }
 
   public resetForm(): void {
-    this.applicant = this.initFormValues();
+    this.applicant = null;
   }
 
   private initFormValues(): Applicant {
