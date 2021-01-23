@@ -10,7 +10,10 @@
     "cancel": "İptal",
     "search": "Ara",
     "new":"Yeni",
-    "update": "Güncelle"
+    "update": "Güncelle",
+    "error": "Hata",
+    "success": "Başarılı",
+    "info": "Bilgi"
   },
 
   "header": {
@@ -46,6 +49,14 @@
     "total": "Toplam",
     "actions":"İşlemler",
     "edit":"Düzenle",
-    "delete":"Sil"
+    "delete":"Sil",
+    "errors": {
+      "name_greater_than":"İsim en az {{param}} karakter olmalıdır",
+      "familyname_greater_than":"Soyad en az {{param}} karakter olmalıdır",
+      "address_greater_than":"Adres en az {{param}} karakter olmalıdır",
+      "invalid_email_address":"E-posta geçersiz",
+      "age_between": "Yaş {{param}} aralığında olmalıdır",
+      "invalid_country": "Geçersiz Ülke"
+    }
   }
 }

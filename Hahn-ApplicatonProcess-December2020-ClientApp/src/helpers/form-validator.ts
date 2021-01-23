@@ -25,7 +25,7 @@ export class FormValidator {
      .ensure('familyName').required().minLength(5)
      .ensure('age').required().range(20,60)
      .ensure('address').required().minLength(10)
-     .ensure('emailAddress').required().email()
+     .ensure('emailAddress').required().satisfies(p => /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(p))
      .ensure('countryOfOrigin').required().minLength(2)
      .ensure('hired').satisfies(p => p !== null && p !== undefined)
      .rules;

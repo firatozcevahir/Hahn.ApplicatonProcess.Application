@@ -14,7 +14,7 @@ export class EditApplicant {
   public id: string;
 
   public editMode = false;
-  public isError = false;
+  public validationErrors = null;
   public isRequesting = false;
   public applicant: Applicant;
 
@@ -25,6 +25,7 @@ export class EditApplicant {
     private validator: FormValidator
   ) {
   }
+
 
   activate(params: { id: string }): void {
     this.applicant = this.initFormValues();
@@ -41,8 +42,9 @@ export class EditApplicant {
   }
 
   public getApplicant(): void {
+
     this.dataService
-      .get<Applicant>(`app/applicant/get/${this.id}`)
+      .get<Applicant>(`app/applicant/${this.id}`)
       .then((response) => {
         this.applicant = response.data;
         console.log(this.applicant);
@@ -56,10 +58,17 @@ export class EditApplicant {
   }
 
   public save(): void {
+    this.validationErrors = false;
       this.dataService.post('app/applicant', this.applicant, this.editMode).then((res) =>{
         console.log(res);
+      }).catch((error: HttpResponseMessage) =>{
+        if(error.statusCode === 400){
+          this.validationErrors = error.content.errors;
+          console.log(Object.entries(this.validationErrors));
+        } else {
+          // 0 server error
+        }
       });
-    console.log('is Valid', this.validator.isValid);
   }
 
   public get hasValue(): boolean {
@@ -67,8 +76,11 @@ export class EditApplicant {
   }
 
   public get hasEmptyValues(): boolean {
-
     return this.formHelper.hasEmptyValues(this.applicant);
+  }
+
+  public get errors(): any {
+    return Object.entries(this.validationErrors);
   }
 
   public resetForm(): void {

@@ -16,8 +16,4 @@ namespace Hahn.ApplicatonProcess.December2020.Domain.ResponseModels
     {
         public T Data { get; set; }
     }
-
-    public class ApiResponse:BaseApiResponse
-    {
-    }
 }

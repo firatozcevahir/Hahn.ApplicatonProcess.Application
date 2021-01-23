@@ -1,7 +1,6 @@
 import { inject } from 'aurelia-framework';
 import { DataService } from '@services/data-service';
 import { Applicant } from '@models/applicant-model';
-
 @inject(DataService)
 export class Home {
   public isRequesting = false;
@@ -10,7 +9,9 @@ export class Home {
 
   public applicants: Applicant[] = [];
   public filteredApplicants: Applicant[] = [];
-  constructor(private dataService: DataService) {
+  constructor(
+    private dataService: DataService
+    ) {
     this.loadData();
   }
 
@@ -18,7 +19,7 @@ export class Home {
   public loadData(): void {
     this.isRequesting = true;
     this.isError = false;
-    this.dataService.get<Applicant[]>('app/applicant/get').then((response) => {
+    this.dataService.get<Applicant[]>('app/applicant').then((response) => {
       this.applicants = response.data;
       this.filteredApplicants = this.applicants;
       console.log(this.applicants);

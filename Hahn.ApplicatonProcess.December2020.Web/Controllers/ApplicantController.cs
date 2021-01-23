@@ -32,7 +32,7 @@ namespace Hahn.ApplicatonProcess.December2020.Web.Controllers
         #region GetMethods
 
         [HttpGet]
-        [Route("get")]
+        // [Route("get")]
         public async Task<IActionResult> Get()
         {
             // TODO: HANDLE LOGS
@@ -43,12 +43,12 @@ namespace Hahn.ApplicatonProcess.December2020.Web.Controllers
             }
             else
             {
-                return BadRequest(result);
+                return BadRequest();
             }
         }
 
         [HttpGet]
-        [Route("get/{id}")]
+        [Route("{id}")]
         public async Task<IActionResult> Get(int id)
         {
             // TODO: HANDLE LOGS
@@ -60,13 +60,13 @@ namespace Hahn.ApplicatonProcess.December2020.Web.Controllers
             else
             {
                 _logger.LogWarning($"Err: {result.Message}. ErrCode: {result.MessageCode}");
-                return BadRequest(result);
+                return BadRequest();
             }
         }
         #endregion
         #region PostMethods
         [HttpPost]
-       /* [Route("add")]*/
+        // [Route("add")]
         public async Task<IActionResult> Post([FromBody] Applicant applicant)
         {
             // TODO: HANDLE LOGS
@@ -79,19 +79,19 @@ namespace Hahn.ApplicatonProcess.December2020.Web.Controllers
                 }
                 else
                 {
-                    return BadRequest(result);
+                    return BadRequest();
                 }
             }
             else
             {
                 //invalid model state
-                return BadRequest(GetModelStateErrors());
+                return BadRequest();
             }
         }
         #endregion
         #region PutMethods
         [HttpPut]
-        /* [Route("update")] */
+        // [Route("update")]
         public async Task<IActionResult> Put([FromBody] Applicant applicant)
         {
             // TODO: HANDLE LOGS
@@ -104,18 +104,18 @@ namespace Hahn.ApplicatonProcess.December2020.Web.Controllers
                 }
                 else
                 {
-                    return BadRequest(result);
+                    return BadRequest();
                 }
             }
             else
             {
-                return BadRequest(GetModelStateErrors());
+                return BadRequest();
             }
         }
         #endregion
         #region DeleteMethods
         [HttpDelete]
-        [Route("delete/{id}")]
+        [Route("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             // TODO: HANDLE LOGS
@@ -126,7 +126,7 @@ namespace Hahn.ApplicatonProcess.December2020.Web.Controllers
             }
             else
             {
-                return BadRequest(result);
+                return BadRequest();
             }
         }
         #endregion

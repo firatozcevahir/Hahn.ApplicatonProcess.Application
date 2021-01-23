@@ -10,14 +10,6 @@ namespace Hahn.ApplicatonProcess.December2020.Web.Controllers
 {
     public class BaseController : Controller
     {
-        protected ApiResponse<IList<ModelError>> GetModelStateErrors()
-        {
-            return new ApiResponse<IList<ModelError>>
-            {
-                Success = false,
-                Message = "Validation Errors",
-                Data = ModelState.Values.SelectMany(v => v.Errors).ToList()
-            };
-        }
+
     }
 }

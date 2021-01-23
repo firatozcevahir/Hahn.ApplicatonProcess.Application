@@ -10,7 +10,10 @@
     "cancel": "Cancel",
     "search": "Search",
     "new":"New",
-    "update": "Update"
+    "update": "Update",
+    "error": "Error",
+    "success": "Success",
+    "info": "Info"
   },
 
   "header": {
@@ -47,6 +50,14 @@
     "total": "Total",
     "actions":"Actions",
     "edit":"Edit",
-    "delete":"Delete"
+    "delete":"Delete",
+    "errors": {
+      "name_greater_than":"Name must be greater than {{param}}",
+      "familyname_greater_than":"Family Name must be greater than {{param}}",
+      "address_greater_than":"Address must be greater than {{param}}",
+      "invalid_email_address":"E-Mail address is not valid",
+      "age_between": "Age must be between {{param}}",
+      "invalid_country": "Invalid Country of Origin"
+    }
   }
 }

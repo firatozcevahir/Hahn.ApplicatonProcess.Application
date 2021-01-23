@@ -7,6 +7,5 @@
   "typescript.preferences.quoteStyle": "single",
   "javascript.preferences.quoteStyle": "single",
   "prettier.quoteProps": "preserve",
-  "aurelia.autocomplete.quotes": "single",
-  "prettier.enable": false
+  "aurelia.autocomplete.quotes": "single"
 }

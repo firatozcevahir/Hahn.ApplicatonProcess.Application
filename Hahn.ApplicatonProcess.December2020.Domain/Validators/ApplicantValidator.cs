@@ -9,18 +9,25 @@ namespace Hahn.ApplicatonProcess.December2020.Domain.Validators
     {
         public ApplicantValidator()
         {
-            RuleFor(a => a.Name).Must(n => n.Length >= 5).WithMessage("Name must be greater than 5");
-            RuleFor(a => a.FamilyName).Must(fn => fn.Length >= 5).WithMessage("Family Name must be greater than 5");
-            RuleFor(a => a.Address).Must(a => a.Length >= 10).WithMessage("Address must be greater than 10");
-            RuleFor(a => a.Age).GreaterThanOrEqualTo(20).LessThanOrEqualTo(60);
-            RuleFor(a => a.EmailAddress).EmailAddress();
+            RuleFor(a => a.Name).Must(n => n.Length >= 5).WithMessage("data.errors.name_greater_than|5");
+            RuleFor(a => a.FamilyName).Must(fn => fn.Length >= 5).WithMessage("data.errors.familyname_greater_than|5");
+            RuleFor(a => a.Address).Must(a => a.Length >= 10).WithMessage("data.errors.address_greater_than|10");
+            RuleFor(a => a.Age)
+                .GreaterThanOrEqualTo(20)
+                .WithMessage("data.errors.age_between|20-60")
+                .LessThanOrEqualTo(60)
+                .WithMessage("data.errors.age_between|20-60");
+            RuleFor(a => a.EmailAddress).Matches(@"^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$").WithMessage("data.errors.invalid_email_address");
             RuleFor(a => a.CountryOfOrigin).MustAsync(async (c, cancellationToken) =>
             {
                 using var client = new HttpClient();
                 var result = await client.GetAsync($"https://restcountries.eu/rest/v2/name/{c}?fullText=true", cancellationToken);
 
                 return result.StatusCode == HttpStatusCode.OK;
-            }).WithMessage($"Provided country is not valid");
+            }).WithMessage("data.errors.invalid_country");
+                        
         }
+
+
     }
 }
