@@ -1,5 +1,3 @@
-import { Validator, ValidationRules } from "aurelia-validation";
-
 export class Applicant {
   id: number;
   name: string;

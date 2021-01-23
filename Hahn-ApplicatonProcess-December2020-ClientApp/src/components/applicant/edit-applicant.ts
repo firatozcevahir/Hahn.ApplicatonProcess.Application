@@ -1,50 +1,35 @@
-import { inject, NewInstance } from "aurelia-framework";
-import { HttpResponseMessage } from "aurelia-http-client";
+import { inject } from 'aurelia-framework';
+import { HttpResponseMessage } from 'aurelia-http-client';
 
-import { DataService } from "@services/data-service";
-import { Router } from "aurelia-router";
-import { FormHelper } from "@helpers/form-helper";
+import { DataService } from '@services/data-service';
+import { Router } from 'aurelia-router';
+import { FormHelper } from '@helpers/form-helper';
+import { FormValidator } from '@helpers/form-validator';
 
-import { Applicant } from "@models/applicant-model";
+import { Applicant } from '@models/applicant-model';
+import { threadId } from 'worker_threads';
 
-import { ValidationControllerFactory, ValidationController, ValidationRules, validateTrigger } from "aurelia-validation";
-import { BootstrapFormRenderer } from "@helpers/bootstrap-form-renderer";
-
-@inject(DataService, Router, FormHelper, ValidationControllerFactory)
+@inject(DataService, Router, FormHelper, FormValidator)
 export class EditApplicant {
   public id: string;
 
   public editMode = false;
   public isError = false;
   public isRequesting = false;
-  public applicant = new Applicant();
-  public rules: ValidationRules;
-
-  controller: ValidationController;
+  public applicant: Applicant;
 
   constructor(
     private dataService: DataService,
     private router: Router,
     private formHelper: FormHelper,
-    private controllerFactory: ValidationControllerFactory
+    private validator: FormValidator
   ) {
-    this.rules = this.getValidationRules();
-    this.controller = this.controllerFactory.createForCurrentScope();
-    this.controller.validateTrigger = validateTrigger.blur;
-    this.controller.addRenderer(new BootstrapFormRenderer());
-    
-    this.controller.subscribe((res) =>{
-      console.log(res);
-      console.log('errors', this.controller.errors);
-    });
   }
 
   activate(params: { id: string }): void {
-    this.applicant = null;
-
+    this.applicant = this.initFormValues();
     this.id = params.id;
     this.editMode = params.id !== undefined;
-
 
     if (this.editMode) {
       this.getApplicant();
@@ -52,7 +37,7 @@ export class EditApplicant {
   }
 
   attached(): void {
-    console.log("edit mode", this.editMode);
+    console.log('edit mode', this.editMode);
   }
 
   public getApplicant(): void {
@@ -63,14 +48,7 @@ export class EditApplicant {
         console.log(this.applicant);
       })
       .catch((error: HttpResponseMessage) => {
-        this.isError = true;
-        if (error.statusCode === 0) {
-          // Server Error
-        } else if (error.statusCode === 400) {
-          // server returned bad request
-        }
-        this.applicant = null;
-        this.router.navigate("applicant/edit");
+        this.editMode = false;
       })
       .finally(() => {
         this.isRequesting = false;
@@ -78,34 +56,36 @@ export class EditApplicant {
   }
 
   public save(): void {
-    const url = this.editMode;
+      this.dataService.post('app/applicant', this.applicant, this.editMode).then((res) =>{
+        console.log(res);
+      });
+    console.log('is Valid', this.validator.isValid);
   }
 
   public get hasValue(): boolean {
     return this.formHelper.hasValue(this.applicant);
   }
 
-  public resetForm(): void {
-    if (!this.editMode) {
-      this.applicant = null;
-      return;
-    }
-    this.applicant.name = '';
-    this.applicant.hired = true;
-    this.applicant.address = '';
-    this.applicant.age = 0;
-    this.applicant.countryOfOrigin = '';
-    this.applicant.emailAddress = '';
-    this.applicant.familyName = '';
+  public get hasEmptyValues(): boolean {
+
+    return this.formHelper.hasEmptyValues(this.applicant);
   }
 
-  private getValidationRules() {
-   return ValidationRules
-    .ensure('name').required().minLength(5).withMessage('NAme önemli')
-    .ensure('familyName').required().withMessage('family adı gerkeli').minLength(20).withMessage('Family adı önemli')
-    .ensure('age').required().min(25).max(60)
-    .ensure('test').required()
-    .rules;
+  public resetForm(): void {
+    this.applicant = this.initFormValues();
+  }
+
+  private initFormValues(): Applicant {
+    // similar to creating reactive form in angular with initial values
+    return {
+      id: 0,
+      address: null,
+      age: null,
+      countryOfOrigin: null,
+      emailAddress: null,
+      familyName: null,
+      hired: false,
+      name: null,
+    };
   }
 }
-

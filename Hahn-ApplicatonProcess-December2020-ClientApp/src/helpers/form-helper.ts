@@ -1,9 +1,14 @@
 export class FormHelper {
 
   public hasValue(obj: any): boolean {
-    if(!obj) return false;
+    if (!obj) return false;
+    return !Object.values(obj).some((p) => p && p !== '')
+      ? false
+      : true;
+  }
 
-    const {id, ...filteredObj} = obj; // omit id because obj might have id that user cannot modify
-    return !Object.values(filteredObj).some(p => (p && p !== '')) ? false : true;
+  public hasEmptyValues(obj: any): boolean {
+    if (!obj) return true;
+    return Object.values(obj).some((p) => p === null || p === undefined || p === '');
   }
 }

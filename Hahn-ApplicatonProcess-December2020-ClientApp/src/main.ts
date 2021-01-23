@@ -12,8 +12,8 @@ export function configure(aurelia: Aurelia): void {
   aurelia.use
     .standardConfiguration()
     .feature(PLATFORM.moduleName('resources/index'));
-
     console.log(environment.debug);
+
   aurelia.use
     .developmentLogging(environment.debug ? 'debug' : 'warn')
     .plugin(PLATFORM.moduleName('aurelia-validation'))
@@ -37,7 +37,6 @@ export function configure(aurelia: Aurelia): void {
         const eventAggregator = aurelia.container.get(EventAggregator);
         eventAggregator.subscribe('i18n:locale:changed', () => {
           router.updateTitle();
-          console.log('title updated');
         });
       });
     });

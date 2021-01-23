@@ -1,5 +1,12 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
   "html.suggest.angular1": false,
-  "html.suggest.ionic": false
+  "html.suggest.ionic": false,
+  "prettier.proseWrap": "never",
+  "prettier.singleQuote": true,
+  "typescript.preferences.quoteStyle": "single",
+  "javascript.preferences.quoteStyle": "single",
+  "prettier.quoteProps": "preserve",
+  "aurelia.autocomplete.quotes": "single",
+  "prettier.enable": false
 }

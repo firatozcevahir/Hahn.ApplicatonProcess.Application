@@ -66,7 +66,7 @@ namespace Hahn.ApplicatonProcess.December2020.Web.Controllers
         #endregion
         #region PostMethods
         [HttpPost]
-        [Route("add")]
+       /* [Route("add")]*/
         public async Task<IActionResult> Post([FromBody] Applicant applicant)
         {
             // TODO: HANDLE LOGS
@@ -91,7 +91,7 @@ namespace Hahn.ApplicatonProcess.December2020.Web.Controllers
         #endregion
         #region PutMethods
         [HttpPut]
-        [Route("update")]
+        /* [Route("update")] */
         public async Task<IActionResult> Put([FromBody] Applicant applicant)
         {
             // TODO: HANDLE LOGS
