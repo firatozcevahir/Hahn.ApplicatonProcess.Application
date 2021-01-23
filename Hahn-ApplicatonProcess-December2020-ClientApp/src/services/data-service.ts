@@ -1,4 +1,4 @@
-import { HttpClient } from 'aurelia-http-client';
+import { HttpClient, HttpRequestMessage, HttpResponseMessage } from 'aurelia-http-client';
 import { inject } from 'aurelia-framework';
 import { config } from '@constants';
 import { IApiResponse } from '@models/api-response';
@@ -16,15 +16,17 @@ export class DataService {
     return (await this.http.get(url)).content as IApiResponse<T>;
   }
 
-  public async post<T>(service: string, content: T, put?: boolean): Promise<IApiResponse<number>>{
-    if (put) {
+  public async post<T>(service: string, content: T, put?: boolean): 
+    Promise<HttpResponseMessage>{
+
       // returns object id in IApiResponse object
+    if (put) {
       const url = `${this.api}/${service}`;
-      return (await this.http.put(url, content )).content as IApiResponse<number>;
+      return (await this.http.put(url, content )).content as HttpResponseMessage;
     }
 
     const url = `${this.api}/${service}`;
-    return (await this.http.post(url, content)).content as IApiResponse<number>;
+    return (await this.http.post(url, content)) as HttpResponseMessage;
   }
 
   public async delete(service: string,): Promise<IApiResponse<number>>{

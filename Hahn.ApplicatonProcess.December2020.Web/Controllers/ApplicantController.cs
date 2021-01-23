@@ -9,6 +9,10 @@ using Hahn.ApplicatonProcess.December2020.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Swashbuckle.AspNetCore.Filters;
+using Swashbuckle.AspNetCore.Annotations;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using Microsoft.OpenApi.Models;
 
 namespace Hahn.ApplicatonProcess.December2020.Web.Controllers
 {
@@ -75,7 +79,7 @@ namespace Hahn.ApplicatonProcess.December2020.Web.Controllers
                 var result = await _service.AddApplicant(applicant);
                 if (result.Success)
                 {
-                    return Created($"get-applicant/{result.Data}", result);
+                    return Created($"{Url.Action()}/{result.Data}", result);
                 }
                 else
                 {
@@ -132,3 +136,4 @@ namespace Hahn.ApplicatonProcess.December2020.Web.Controllers
         #endregion
     }
 }
+

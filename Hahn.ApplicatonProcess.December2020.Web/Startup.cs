@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Figgle;
 using Microsoft.OpenApi.Models;
 using Hahn.ApplicatonProcess.December2020.Data.DataContext;
 using Microsoft.EntityFrameworkCore;
@@ -17,9 +16,11 @@ using FluentValidation.AspNetCore;
 using FluentValidation;
 using Hahn.ApplicatonProcess.December2020.Domain.Models;
 using Hahn.ApplicatonProcess.December2020.Domain.Validators;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace Hahn.ApplicatonProcess.December2020.Web
 {
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -67,10 +68,17 @@ namespace Hahn.ApplicatonProcess.December2020.Web
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "My API",
-                    Description = "My First ASP.NET Core Web API"
+                    Title = "Demo App For Job Application",
+                    Description = "Demo app for job application"
                 });
+
+                c.ExampleFilters(); 
+                
+
             });
+
+            // add example value to swagger
+            services.AddSwaggerExamplesFromAssemblyOf(typeof(ApplicantSwaggerExample));
 
             services.AddDbContext<ApplicationDbContext>(options =>
             {
@@ -127,12 +135,12 @@ namespace Hahn.ApplicatonProcess.December2020.Web
                 var result = DbInitializer.Initialize(services);
                 if (!result)
                 {
+                    // db failed to initialize
                 }
             }
 
             app.UseSpa(spa =>
             {
-
                 if (env.IsDevelopment())
                 {
                     spa.UseProxyToSpaDevelopmentServer("http://localhost:8080");

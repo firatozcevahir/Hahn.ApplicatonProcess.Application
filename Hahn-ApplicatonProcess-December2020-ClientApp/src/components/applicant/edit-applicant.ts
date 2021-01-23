@@ -60,7 +60,9 @@ export class EditApplicant {
   public save(): void {
     this.validationErrors = false;
       this.dataService.post('app/applicant', this.applicant, this.editMode).then((res) =>{
-        console.log(res);
+        if(!this.editMode){
+          console.log('created', res);
+        }
       }).catch((error: HttpResponseMessage) =>{
         if(error.statusCode === 400){
           this.validationErrors = error.content.errors;
