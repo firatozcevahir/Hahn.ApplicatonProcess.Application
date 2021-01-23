@@ -19,7 +19,8 @@
       "@helpers/*":["./helpers/*"],
       "@constants":["./constants/constants"],
       "@services/*": ["./services/*"],
-      "@models/*": ["./models/*"]
+      "@models/*": ["./models/*"],
+      "@sharedcomponents/*": ["./components/shared/*"],
     },
     "moduleResolution": "node",
     "baseUrl": "src",
