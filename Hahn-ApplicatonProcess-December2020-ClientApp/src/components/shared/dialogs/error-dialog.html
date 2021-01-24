@@ -4,7 +4,6 @@
     <ux-dialog-header>${ data.title & t}</ux-dialog-header>
     <ux-dialog-body>
       ${ data.text & t}
-      <br />
       <div class="alert alert-danger" role="alert" if.bind="isArray">
         <ul>
           <li repeat.for="error of data.value">

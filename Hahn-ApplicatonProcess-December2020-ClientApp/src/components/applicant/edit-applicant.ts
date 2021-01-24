@@ -64,7 +64,6 @@ export class EditApplicant {
     }
 
     this.isRequesting = true;
-    this.validationErrors = false;
     this.dataService
       .post('app/applicant', this.applicant, this.editMode)
       .then((res) => {
@@ -76,11 +75,11 @@ export class EditApplicant {
       })
       .catch((error: HttpResponseMessage) => {
         if (error.statusCode === 400) {
-          this.validationErrors = error.content.errors;
+          this.validationErrors = error.content.errors ? Object.entries(error.content.errors) : error.content.title;
           console.log(this.validationErrors);
           this.dialogService.openError({
-            title: 'data.validation_error',
-            value: Object.entries(this.validationErrors) // pass validation errors as parameter
+            title: 'base.error',
+            value: this.validationErrors // pass validation errors as parameter
           }).whenClosed(() =>{
             console.log('closed error dialog');
           });
@@ -119,7 +118,7 @@ export class EditApplicant {
   private initFormValues(): Applicant {
     // similar to creating reactive form in angular with initial values
     return {
-      id: 0,
+      id: this.editMode ? +this.id : 0, // keep id if it is edit mode is true
       address: '',
       age: null,
       countryOfOrigin: '',
