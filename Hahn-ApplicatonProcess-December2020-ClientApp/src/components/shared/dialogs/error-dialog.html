@@ -1,0 +1,25 @@
+<template>
+  <require from="./dialog.css"></require>
+  <ux-dialog>
+    <ux-dialog-header>${ data.title & t}</ux-dialog-header>
+    <ux-dialog-body>
+      ${ data.text & t}
+      <br />
+      <div class="alert alert-danger" role="alert" if.bind="isArray">
+        <ul>
+          <li repeat.for="error of data.value">
+            ${'data.title.' + error[0].toLowerCase() & t}
+            <ul>
+              <li repeat.for="val of error[1]">
+                ${val.split('|')[0] & t: {'param': val.split('|')[1]}}
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div if.bind="!isArray">
+        ${ data.value }
+      </div>
+    </ux-dialog-body>
+  </ux-dialog>
+</template>

@@ -42,7 +42,5 @@ export const config = {
     .withMessage('data.errors.country_required')
     .minLength(2)
     .withMessage('data.errors.country_greater_than|2')
-    .ensure('hired')
-    .satisfies((p) => p !== null && p !== undefined)
-    .withMessage('').rules,
+    .rules,
 };

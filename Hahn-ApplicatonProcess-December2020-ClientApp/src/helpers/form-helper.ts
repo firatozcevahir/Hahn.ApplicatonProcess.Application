@@ -2,7 +2,7 @@ export class FormHelper {
 
   public hasValue(obj: any): boolean {
     if (!obj) return false;
-    return !Object.values(obj).some((p) => p && p !== '')
+    return !Object.values(obj).some((p) => p && (p !== '' && p != 0))
       ? false
       : true;
   }

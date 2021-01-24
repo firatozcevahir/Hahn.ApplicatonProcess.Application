@@ -19,7 +19,10 @@ export class App {
       .then(() => {
         console.log('locale is set');
       });
+
   }
+
+
 
   public configureRouter(config: RouterConfiguration, router: Router): void {
     config.title = 'Aurelia';

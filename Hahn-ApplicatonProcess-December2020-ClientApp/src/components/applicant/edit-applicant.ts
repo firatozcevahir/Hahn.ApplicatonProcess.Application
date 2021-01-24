@@ -1,15 +1,15 @@
 import { inject } from 'aurelia-framework';
 import { HttpResponseMessage } from 'aurelia-http-client';
 
-import { DataService } from '@services/data-service';
 import { Router } from 'aurelia-router';
+import { DataService } from '@services/data-service';
 import { FormHelper } from '@helpers/form-helper';
 import { FormValidator } from '@helpers/form-validator';
 
 import { Applicant } from '@models/applicant-model';
-import { threadId } from 'worker_threads';
+import { DialogServiceWrapper } from '@services/dialog-service';
 
-@inject(DataService, Router, FormHelper, FormValidator)
+@inject(Router, DataService, FormHelper, FormValidator, DialogServiceWrapper)
 export class EditApplicant {
   public id: string;
 
@@ -19,13 +19,12 @@ export class EditApplicant {
   public applicant: Applicant;
 
   constructor(
-    private dataService: DataService,
     private router: Router,
+    private dataService: DataService,
     private formHelper: FormHelper,
-    private validator: FormValidator
-  ) {
-  }
-
+    private validator: FormValidator,
+    private dialogService: DialogServiceWrapper
+  ) {}
 
   activate(params: { id: string }): void {
     this.applicant = this.initFormValues();
@@ -35,6 +34,8 @@ export class EditApplicant {
     if (this.editMode) {
       this.getApplicant();
     }
+
+    console.log('form helper', this.formHelper);
   }
 
   attached(): void {
@@ -58,25 +59,37 @@ export class EditApplicant {
   }
 
   public save(): void {
-
-    if(!this.validator.isValid){
+    if (!this.validator.isValid) {
       return;
     }
 
     this.isRequesting = true;
     this.validationErrors = false;
-      this.dataService.post('app/applicant', this.applicant, this.editMode).then((res) =>{
-        if(!this.editMode){
+    this.dataService
+      .post('app/applicant', this.applicant, this.editMode)
+      .then((res) => {
+        if (!this.editMode) {
           console.log('created', res);
         }
-      }).catch((error: HttpResponseMessage) =>{
-        if(error.statusCode === 400){
+
+        this.router.navigate('/');
+      })
+      .catch((error: HttpResponseMessage) => {
+        if (error.statusCode === 400) {
           this.validationErrors = error.content.errors;
-          console.log(Object.entries(this.validationErrors));
+          console.log(this.validationErrors);
+          this.dialogService.openError({
+            title: 'data.validation_error',
+            value: Object.entries(this.validationErrors) // pass validation errors as parameter
+          }).whenClosed(() =>{
+            console.log('closed error dialog');
+          });
+
         } else {
           // 0 server error
         }
-      }).finally(() =>{
+      })
+      .finally(() => {
         this.isRequesting = false;
       });
   }
@@ -89,25 +102,31 @@ export class EditApplicant {
     return this.formHelper.hasEmptyValues(this.applicant);
   }
 
-  public get errors(): any {
-    return Object.entries(this.validationErrors);
-  }
-
   public resetForm(): void {
-    this.applicant = null;
+    this.dialogService
+      .openConfirm({
+        title: 'base.confirm_reset',
+        text: 'base.data_will_be_reset',
+      })
+      .whenClosed((res) => {
+        if (!res.wasCancelled) {
+          this.applicant = this.initFormValues();
+          this.validator.validate();
+        }
+      });
   }
 
   private initFormValues(): Applicant {
     // similar to creating reactive form in angular with initial values
     return {
       id: 0,
-      address: null,
+      address: '',
       age: null,
-      countryOfOrigin: null,
-      emailAddress: null,
-      familyName: null,
+      countryOfOrigin: '',
+      emailAddress: '',
+      familyName: '',
       hired: false,
-      name: null,
+      name: '',
     };
   }
 }

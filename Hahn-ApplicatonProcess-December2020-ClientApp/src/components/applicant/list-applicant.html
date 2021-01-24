@@ -39,7 +39,7 @@
               <th scope="col">${'data.title.emailaddress' & t}</th>
               <th scope="col">${'data.title.age' & t}</th>
               <th scope="col">${'data.title.ishired' & t}</th>
-              <th scope="col">${'data.actions' & t}</th>
+              <th scope="col">${'base.actions' & t}</th>
             </tr>
           </thead>
           <tbody>
@@ -63,9 +63,9 @@
                 ${('base.' + (applicant.hired ? 'yes': 'no')) & t}
               </td>
               <td>
-                <a href="#/applicant/edit/${applicant.id}">${'data.edit' & t}</a>
+                <a href="#/applicant/edit/${applicant.id}">${'base.edit' & t}</a>
                 /
-                <a href="#">${'data.delete' & t}</a>
+                <a href="#" click.trigger="delete(applicant.id, applicant.name)">${'base.delete' & t}</a>
               </td>
             </tr>
           </tbody>

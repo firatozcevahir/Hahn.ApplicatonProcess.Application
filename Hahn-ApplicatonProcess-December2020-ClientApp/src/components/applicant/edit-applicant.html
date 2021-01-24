@@ -61,13 +61,13 @@
         <div class="form-row">
           <div class="col-md-8 mb-3">
             <div class="form-group">
-              <label for="validationServer04"
+              <label for="address"
                 >${ 'data.title.address' & t}</label
               >
               <input
                 type="text"
                 class="form-control"
-                id="validationServer04"
+                id="address"
                 placeholder="${ 'data.title.address' & t}"
                 value.bind="applicant.address & validate:validator.rules"
               />
@@ -75,13 +75,13 @@
           </div>
           <div class="col-md-4 mb-3">
             <div class="form-group">
-              <label for="validationServer05"
+              <label for="countryOfOrigin"
                 >${ 'data.title.countryoforigin' & t}</label
               >
               <input
                 type="text"
                 class="form-control"
-                id="validationServer05"
+                id="countryOfOrigin"
                 placeholder="${ 'data.title.countryoforigin' & t}"
                 value.bind="applicant.countryOfOrigin & validate:validator.rules"
               />
@@ -94,7 +94,7 @@
               class="form-check-input"
               type="checkbox"
               id="isHired"
-              checked.bind="applicant.hired & validate:validator.rules"
+              checked.bind="applicant.hired"
             />
             <label class="form-check-label" for="isHired">
               ${ 'data.title.ishired' & t}
@@ -115,25 +115,11 @@
             type="submit"
             disabled.bind="!hasValue || hasEmptyValues || !validator.isValid || isRequesting"
           >
-          <spinner></spinner>
+          <spinner if.bind="isRequesting"></spinner>
             ${ (editMode ? 'base.update' : 'base.send') & t}
           </button>
         </div>
       </form>
-    </div>
-    <div class="col-md-4" if.bind="validationErrors">
-      <div class="alert alert-danger" role="alert">
-        <ul>
-          <li repeat.for="error of errors">
-            ${'data.title.' + error[0].toLowerCase() & t}
-            <ul>
-              <li repeat.for="val of error[1]">
-                ${val.split('|')[0] & t: {'param': val.split('|')[1]}}
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
     </div>
   </div>
 </template>

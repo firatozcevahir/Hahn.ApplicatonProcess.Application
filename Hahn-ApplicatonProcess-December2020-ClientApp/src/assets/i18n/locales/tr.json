@@ -9,19 +9,28 @@
     "send": "Gönder",
     "cancel": "İptal",
     "search": "Ara",
-    "new":"Yeni",
+    "new": "Yeni",
+    "create": "Oluştur",
+    "edit": "Düzenle",
+    "delete": "Sil",
+    "actions": "İşlemler",
     "update": "Güncelle",
     "error": "Hata",
     "success": "Başarılı",
-    "info": "Bilgi"
+    "info": "Bilgi",
+    "warning": "Uyarı",
+    "confirm": "Onayla",
+    "confirm_deletion": "Silmeyi Onayla",
+    "confirm_reset":"Sıfırlamayı Onayla",
+    "data_will_be_deleted": "Veri Silinecek",
+    "data_will_be_reset":"Veriler Sıfırlanacak"
   },
-
   "header": {
     "routes": {
       "home": "Uygulamam",
       "about": "Hakkında",
-      "addapplicant":"Kişi Ekle",
-      "editapplicant":"Kişi Düzenle"
+      "addapplicant": "Kişi Ekle",
+      "editapplicant": "Kişi Düzenle"
     },
     "language": "Dil",
     "lang": {
@@ -34,7 +43,6 @@
   "home": {
     "title": "Title of Home Component"
   },
-
   "data": {
     "title": {
       "Id": "Kimlik",
@@ -47,22 +55,20 @@
       "ishired": "İşe Alındı mı?"
     },
     "total": "Toplam",
-    "actions":"İşlemler",
-    "edit":"Düzenle",
-    "delete":"Sil",
+    "validation_error":"Doğrulama Hatası",
     "errors": {
-      "name_required":"İsim gerekli",
-      "name_greater_than":"İsim en az {{param}} karakter olmalıdır",
-      "familyname_required":"Soyad gerekli",
-      "familyname_greater_than":"Soyad en az {{param}} karakter olmalıdır",
-      "address_required":"Adres gerekli",
-      "address_greater_than":"Adres en az {{param}} karakter olmalıdır",
-      "email_address_required":"E-posta adresi gerekli",
-      "invalid_email_address":"E-posta geçersiz",
-      "age_invalid":"Yaş geçersiz",
+      "name_required": "İsim gerekli",
+      "name_greater_than": "İsim en az {{param}} karakter olmalıdır",
+      "familyname_required": "Soyad gerekli",
+      "familyname_greater_than": "Soyad en az {{param}} karakter olmalıdır",
+      "address_required": "Adres gerekli",
+      "address_greater_than": "Adres en az {{param}} karakter olmalıdır",
+      "email_address_required": "E-posta adresi gerekli",
+      "invalid_email_address": "E-posta geçersiz",
+      "age_invalid": "Yaş geçersiz",
       "age_between": "Yaş {{param}} aralığında olmalıdır",
-      "country_required":"Ülke gerekli",
-      "country_greater_than":"Ülke en az {{param}} karakter olmalıdır",
+      "country_required": "Ülke gerekli",
+      "country_greater_than": "Ülke en az {{param}} karakter olmalıdır",
       "invalid_country": "Geçersiz ülke"
     }
   }

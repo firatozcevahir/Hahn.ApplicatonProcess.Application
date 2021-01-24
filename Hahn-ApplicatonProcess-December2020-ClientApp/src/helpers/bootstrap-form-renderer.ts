@@ -33,11 +33,11 @@ export class BootstrapFormRenderer {
       return;
     }
 
-    // check if help block added already
     let feedbackDiv = formGroup.querySelector('.invalid-feedback');
     const msg = result.message.split('|');
     const txt = '${\'' + msg[0] + '\' & t' + (msg[1] ? ':{param: \'' + msg[1] + '\'}}' : '}');
 
+    // check if help block added already
     if (feedbackDiv) {
       feedbackDiv.innerHTML = txt;
       feedbackDiv.id = `validation-message-${result.id}`;
