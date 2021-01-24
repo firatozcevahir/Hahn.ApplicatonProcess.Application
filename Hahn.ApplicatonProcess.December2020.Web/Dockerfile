@@ -1,13 +1,15 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
+FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
+FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
 WORKDIR /src
 COPY ["Hahn.ApplicatonProcess.December2020.Web/Hahn.ApplicatonProcess.December2020.Web.csproj", "Hahn.ApplicatonProcess.December2020.Web/"]
+COPY ["Hahn.ApplicatonProcess.December2020.Domain/Hahn.ApplicatonProcess.December2020.Domain.csproj", "Hahn.ApplicatonProcess.December2020.Domain/"]
+COPY ["Hahn.ApplicatonProcess.December2020.Data/Hahn.ApplicatonProcess.December2020.Data.csproj", "Hahn.ApplicatonProcess.December2020.Data/"]
 RUN dotnet restore "Hahn.ApplicatonProcess.December2020.Web/Hahn.ApplicatonProcess.December2020.Web.csproj"
 COPY . .
 WORKDIR "/src/Hahn.ApplicatonProcess.December2020.Web"

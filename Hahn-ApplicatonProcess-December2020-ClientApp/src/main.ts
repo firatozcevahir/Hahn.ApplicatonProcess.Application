@@ -7,8 +7,6 @@ import Backend from 'i18next-xhr-backend';
 
 import { AppRouter } from 'aurelia-router';
 import { EventAggregator } from 'aurelia-event-aggregator';
-import { ValidationMessageProvider } from 'aurelia-validation';
-import { BootstrapFormRenderer } from '@helpers/bootstrap-form-renderer';
 
 export function configure(aurelia: Aurelia): void {
   aurelia.use

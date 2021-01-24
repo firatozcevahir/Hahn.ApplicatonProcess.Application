@@ -1,4 +1,6 @@
 import { inject } from 'aurelia-framework';
+
+import { PLATFORM } from 'aurelia-pal';
 import {
   DialogCancellableOpenResult,
   DialogOpenPromise,
@@ -7,6 +9,10 @@ import {
 import { ConfirmDialog } from '@sharedcomponents/dialogs/confirm-dialog';
 import { ErrorDialog } from '@sharedcomponents/dialogs/error-dialog';
 import { IDialogData } from '@models/dialog-data-model';
+
+PLATFORM.moduleName('../components/shared/dialogs/confirm-dialog');
+PLATFORM.moduleName('../components/shared/dialogs/error-dialog')
+
 
 @inject(DialogService)
 export class DialogServiceWrapper {

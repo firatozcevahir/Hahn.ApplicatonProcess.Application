@@ -1,0 +1,75 @@
+{
+  "base": {
+    "true": "True",
+    "false": "False",
+    "yes": "Yes",
+    "no": "No",
+    "ok": "Ok",
+    "reset": "Reset",
+    "send": "Send",
+    "cancel": "Cancel",
+    "search": "Search",
+    "actions": "Actions",
+    "new": "New",
+    "create":"Create",
+    "edit": "Edit",
+    "update": "Update",
+    "delete":"Delete",
+    "error": "Error",
+    "success": "Success",
+    "info": "Info",
+    "warning": "Warning",
+    "confirm": "Confirm",
+    "confirm_deletion": "Confirm Deletion",
+    "confirm_reset":"Confirm Reset",
+    "data_will_be_deleted": "Data will be Deleted",
+    "data_will_be_reset":"Data will be reset"
+  },
+  "header": {
+    "routes": {
+      "home": "My App",
+      "about": "About",
+      "addapplicant": "Add Applicant",
+      "editapplicant": "Edit Applicant"
+    },
+    "language": "Language",
+    "lang": {
+      "german": "German",
+      "english": "English",
+      "turkish": "Turkish"
+    },
+    "swaggerui": "Swagger UI"
+  },
+  "home": {
+    "title": "Title of Home Component"
+  },
+  "data": {
+    "title": {
+      "id": "Id",
+      "name": "Name",
+      "familyname": "Family Name",
+      "address": "Address",
+      "countryoforigin": "Country of Origin",
+      "emailaddress": "E-Mail Address",
+      "age": "Age",
+      "ishired": "Is Hired?"
+    },
+    "total": "Total",
+    "validation_error":"Validation Error",
+    "errors": {
+      "name_required": "Name Required",
+      "name_greater_than": "Name must be greater than {{param}}",
+      "familyname_required": "Family Name Required",
+      "familyname_greater_than": "Family Name must be greater than {{param}}",
+      "address_required": "Address Required",
+      "address_greater_than": "Address must be greater than {{param}}",
+      "email_address_required": "E-mail address is required",
+      "invalid_email_address": "E-Mail address is not valid",
+      "age_invalid": "Age is invalid",
+      "age_between": "Age must be between {{param}}",
+      "country_required": "Country Required",
+      "country_greater_than": "Country must be greater than {{param}}",
+      "invalid_country": "Invalid Country of Origin"
+    }
+  }
+}
