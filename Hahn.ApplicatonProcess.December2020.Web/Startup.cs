@@ -17,6 +17,7 @@ using FluentValidation;
 using Hahn.ApplicatonProcess.December2020.Domain.Models;
 using Hahn.ApplicatonProcess.December2020.Domain.Validators;
 using Swashbuckle.AspNetCore.Filters;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Hahn.ApplicatonProcess.December2020.Web
 {
@@ -95,6 +96,11 @@ namespace Hahn.ApplicatonProcess.December2020.Web
                 }
             });
 
+            // Custom response when modelstate is invalid
+            //services.Configure<ApiBehaviorOptions>(options =>
+            //{
+            //    options.SuppressModelStateInvalidFilter = true;
+            //});
 
             //Add DI services
             services.AddScoped<IApplicantDataService, ApplicantDataService>();

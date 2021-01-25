@@ -13,6 +13,7 @@ using Swashbuckle.AspNetCore.Filters;
 using Swashbuckle.AspNetCore.Annotations;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Microsoft.OpenApi.Models;
+using Hahn.ApplicatonProcess.December2020.Domain.ResponseModels;
 
 namespace Hahn.ApplicatonProcess.December2020.Web.Controllers
 {
@@ -47,6 +48,7 @@ namespace Hahn.ApplicatonProcess.December2020.Web.Controllers
             }
             else
             {
+                _logger.LogError($"Err: {result.Message}. ErrCode: {(int)result.MessageCode}");
                 return BadRequest();
             }
         }
@@ -63,7 +65,7 @@ namespace Hahn.ApplicatonProcess.December2020.Web.Controllers
             }
             else
             {
-                _logger.LogWarning($"Err: {result.Message}. ErrCode: {result.MessageCode}");
+                _logger.LogError($"Err: {result.Message}. ErrCode: {(int)result.MessageCode}");
                 return BadRequest();
             }
         }
@@ -83,12 +85,14 @@ namespace Hahn.ApplicatonProcess.December2020.Web.Controllers
                 }
                 else
                 {
+                    _logger.LogError($"Err: {result.Message}. ErrCode: {(int)result.MessageCode}");
                     return BadRequest();
                 }
             }
             else
             {
                 //invalid model state
+                _logger.LogError($"Err: Validation Error. ErrCode: {(int)MessageCode.ValidationFailed}");
                 return BadRequest();
             }
         }
@@ -108,11 +112,13 @@ namespace Hahn.ApplicatonProcess.December2020.Web.Controllers
                 }
                 else
                 {
+                    _logger.LogError($"Err: {result.Message}. ErrCode: {(int)result.MessageCode}");
                     return BadRequest();
                 }
             }
             else
             {
+                _logger.LogError($"Err: Validation Error. ErrCode: {(int)MessageCode.ValidationFailed}");
                 return BadRequest();
             }
         }
@@ -130,6 +136,7 @@ namespace Hahn.ApplicatonProcess.December2020.Web.Controllers
             }
             else
             {
+                _logger.LogError($"Err: {result.Message}. ErrCode: {(int)result.MessageCode}");
                 return BadRequest();
             }
         }

@@ -29,6 +29,7 @@ namespace Hahn.ApplicatonProcess.December2020.Domain.DataService
                 {
                     Message = $"Applicant with ID of {id} Doesn't Exist",
                     Success = false,
+                    MessageCode = MessageCode.NotFound
                 };
             }
 
@@ -38,7 +39,8 @@ namespace Hahn.ApplicatonProcess.December2020.Domain.DataService
                 return new ApiResponse<Applicant>
                 {
                     Success = true,
-                    Data = Mapper.MapEntityToDto(content)
+                    Data = Mapper.MapEntityToDto(content),
+                    MessageCode = MessageCode.GetSuccesful
                 };
             }
             catch (Exception ex)
@@ -55,7 +57,8 @@ namespace Hahn.ApplicatonProcess.December2020.Domain.DataService
                 return new ApiResponse<IList<Applicant>>
                 {
                     Success = true,
-                    Data = content
+                    Data = content,
+                    MessageCode = MessageCode.GetSuccesful
                 };
             }
             catch (Exception ex)
@@ -71,7 +74,8 @@ namespace Hahn.ApplicatonProcess.December2020.Domain.DataService
                 return new ApiResponse<int>
                 {
                     Message = $"ID {applicant.ID} Already Exists",
-                    Success = false
+                    Success = false,
+                    MessageCode = MessageCode.AlreadyExists
                 };
             }
             try
@@ -85,7 +89,8 @@ namespace Hahn.ApplicatonProcess.December2020.Domain.DataService
                     {
                         Message = $"Successfully Created",
                         Success = true,
-                        Data = entity.ID
+                        Data = entity.ID,
+                        MessageCode = MessageCode.CreateSuccessful
                     };
                 }
                 else
@@ -93,7 +98,8 @@ namespace Hahn.ApplicatonProcess.December2020.Domain.DataService
                     return new ApiResponse<int>
                     {
                         Message = $"Failed to Create Applicant",
-                        Success = false
+                        Success = false,
+                        MessageCode = MessageCode.CreateFailed
                     };
                 }
             }
@@ -111,7 +117,8 @@ namespace Hahn.ApplicatonProcess.December2020.Domain.DataService
                 {
                     Message = $"Applicant with ID of {applicant.ID} Doesn't Exist",
                     Success = false,
-                    Data = applicant.ID
+                    Data = applicant.ID,
+                    MessageCode = MessageCode.NotFound
                 };
             }
 
@@ -125,15 +132,16 @@ namespace Hahn.ApplicatonProcess.December2020.Domain.DataService
                 entity.FamilyName = applicant.FamilyName;
                 entity.Hired = applicant.Hired;
                 entity.Name = applicant.Name;
-                _context.Update(entity);               
+                _context.Update(entity);
                 var result = await _context.SaveChangesAsync();
-                if(result > 0)
+                if (result > 0)
                 {
                     return new ApiResponse<int>
                     {
                         Message = $"Successfully Updated",
                         Success = true,
-                        Data = applicant.ID
+                        Data = applicant.ID,
+                        MessageCode = MessageCode.UpdateSuccesful
                     };
                 }
                 else
@@ -142,18 +150,14 @@ namespace Hahn.ApplicatonProcess.December2020.Domain.DataService
                     {
                         Message = $"An Error occured while updating",
                         Success = false,
-                        Data = 0
+                        Data = 0,
+                        MessageCode = MessageCode.UpdateFailed
                     };
                 }
             }
             catch (Exception ex)
             {
-                return new ApiResponse<int>
-                {
-                    Message = $"Exception: {ex.Message}",
-                    Success = false,
-                    Data = 0
-                };
+                return GetExceptionApiResponse<int>(ex.Message);
             }
         }
 
@@ -166,7 +170,8 @@ namespace Hahn.ApplicatonProcess.December2020.Domain.DataService
                 {
                     Message = $"ID {id} Does not Exist",
                     Success = false,
-                    Data = id
+                    Data = id,
+                    MessageCode = MessageCode.NotFound
                 };
             }
 
@@ -181,7 +186,8 @@ namespace Hahn.ApplicatonProcess.December2020.Domain.DataService
                     {
                         Message = $"Successfully Deleted",
                         Success = true,
-                        Data = id
+                        Data = id,
+                        MessageCode = MessageCode.DeleteSuccesful
                     };
                 }
                 else
@@ -190,7 +196,8 @@ namespace Hahn.ApplicatonProcess.December2020.Domain.DataService
                     {
                         Message = $"An Error occured while Deleting",
                         Success = false,
-                        Data = id
+                        Data = id,
+                        MessageCode = MessageCode.DeleteFailed
                     };
                 }
             }
@@ -211,7 +218,8 @@ namespace Hahn.ApplicatonProcess.December2020.Domain.DataService
             return new ApiResponse<T>
             {
                 Message = $"Exception: {message}",
-                Success = false
+                Success = false,
+                MessageCode = MessageCode.Exception
             };
         }
     }
