@@ -97,8 +97,8 @@ export class EditApplicant {
     return this.formHelper.hasValue(this.applicant);
   }
 
-  public get hasEmptyValues(): boolean {
-    return this.formHelper.hasEmptyValues(this.applicant);
+  public get hasEmptyFields(): boolean {
+    return this.formHelper.hasEmptyFields(this.applicant);
   }
 
   public resetForm(): void {
@@ -118,7 +118,7 @@ export class EditApplicant {
   private initFormValues(): Applicant {
     // similar to creating reactive form in angular with initial values
     return {
-      id: this.editMode ? +this.id : 0, // keep id if it is edit mode is true
+      id: this.editMode ? +this.id : 0, // keep id if editMode is true
       address: '',
       age: null,
       countryOfOrigin: '',

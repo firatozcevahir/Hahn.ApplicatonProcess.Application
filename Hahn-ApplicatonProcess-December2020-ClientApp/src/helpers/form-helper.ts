@@ -7,7 +7,7 @@ export class FormHelper {
       : true;
   }
 
-  public hasEmptyValues(obj: any): boolean {
+  public hasEmptyFields(obj: any): boolean {
     if (!obj) return true;
     return Object.values(obj).some((p) => p === null || p === undefined || p === '');
   }
