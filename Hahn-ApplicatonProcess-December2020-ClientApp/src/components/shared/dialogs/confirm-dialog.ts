@@ -7,8 +7,7 @@ export class ConfirmDialog {
   public data: IDialogData;
   constructor(private controller: DialogController) {}
 
-  private activate(val: IDialogData): void {
+  activate(val: IDialogData): void {
     this.data = val;
-    console.log(this.data);
   }
 }

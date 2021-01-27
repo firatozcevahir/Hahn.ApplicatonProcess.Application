@@ -97,10 +97,10 @@ namespace Hahn.ApplicatonProcess.December2020.Web
             });
 
             // Custom response when modelstate is invalid
-            //services.Configure<ApiBehaviorOptions>(options =>
-            //{
-            //    options.SuppressModelStateInvalidFilter = true;
-            //});
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.SuppressModelStateInvalidFilter = true;
+            });
 
             //Add DI services
             services.AddScoped<IApplicantDataService, ApplicantDataService>();

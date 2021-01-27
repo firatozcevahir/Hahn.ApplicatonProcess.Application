@@ -14,6 +14,7 @@ using Swashbuckle.AspNetCore.Annotations;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Microsoft.OpenApi.Models;
 using Hahn.ApplicatonProcess.December2020.Domain.ResponseModels;
+using Hahn.ApplicatonProcess.December2020.Web.Helpers;
 
 namespace Hahn.ApplicatonProcess.December2020.Web.Controllers
 {
@@ -93,7 +94,7 @@ namespace Hahn.ApplicatonProcess.December2020.Web.Controllers
             {
                 //invalid model state
                 _logger.LogError($"Err: Validation Error. ErrCode: {(int)MessageCode.ValidationFailed}");
-                return BadRequest();
+                return BadRequest(ControllerHelper.GetModelStateErrors(ModelState));
             }
         }
         #endregion
@@ -119,7 +120,7 @@ namespace Hahn.ApplicatonProcess.December2020.Web.Controllers
             else
             {
                 _logger.LogError($"Err: Validation Error. ErrCode: {(int)MessageCode.ValidationFailed}");
-                return BadRequest();
+                return BadRequest(ControllerHelper.GetModelStateErrors(ModelState));
             }
         }
         #endregion

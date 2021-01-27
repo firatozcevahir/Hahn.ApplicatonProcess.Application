@@ -7,8 +7,8 @@
       <i>${data.value}</i>
     </ux-dialog-body>
     <ux-dialog-footer>
-      <button click.trigger="controller.cancel()">${ 'base.cancel' & t}</button>
-      <button click.trigger="controller.ok(true)">${ 'base.confirm' & t}</button>
+      <button class="btn btn-outline-secondary"  click.trigger="controller.cancel()">${ 'base.cancel' & t}</button>
+      <button class="btn btn-outline-success" click.trigger="controller.ok(true)">${ 'base.confirm' & t}</button>
     </ux-dialog-footer>
   </ux-dialog>
 </template>

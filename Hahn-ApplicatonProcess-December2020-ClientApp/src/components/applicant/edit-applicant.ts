@@ -24,22 +24,22 @@ export class EditApplicant {
     private formHelper: FormHelper,
     private validator: FormValidator,
     private dialogService: DialogServiceWrapper
-  ) {}
+  ) { }
 
-  activate(params: { id: string }): void {
-    this.applicant = this.initFormValues();
+  activate(params: any, routeConfig: any): void {
+    // get related object to get the values back after sending the form if operation fails
+    const relatedObject = routeConfig.settings.relatedObject;
+    this.applicant = relatedObject ? relatedObject : this.initFormValues();
     this.id = params.id;
     this.editMode = params.id !== undefined;
 
-    if (this.editMode) {
+    if (this.editMode && !relatedObject) {
       this.getApplicant();
     }
-
-    console.log('form helper', this.formHelper);
-  }
-
-  attached(): void {
-    console.log('edit mode', this.editMode);
+    // set relatedobject back to undefined to make sure
+    // it is not overriding the default insert/edit form
+    routeConfig.settings.relatedObject = undefined;
+    this.validator.reset();
   }
 
   public getApplicant(): void {
@@ -47,11 +47,11 @@ export class EditApplicant {
     this.dataService
       .get<Applicant>(`app/applicant/${this.id}`)
       .then((response) => {
+        console.log('response data', response.data);
         this.applicant = response.data;
-        console.log(this.applicant);
       })
       .catch((error: HttpResponseMessage) => {
-        this.editMode = false;
+        this.router.navigate('applicant/edit'); // if applicant not found, insert new
       })
       .finally(() => {
         this.isRequesting = false;
@@ -64,33 +64,7 @@ export class EditApplicant {
     }
 
     this.isRequesting = true;
-    this.dataService
-      .post('app/applicant', this.applicant, this.editMode)
-      .then((res) => {
-        if (!this.editMode) {
-          console.log('created', res);
-        }
-
-        this.router.navigate('/');
-      })
-      .catch((error: HttpResponseMessage) => {
-        if (error.statusCode === 400) {
-          this.validationErrors = error.content.errors ? Object.entries(error.content.errors) : error.content.title;
-          console.log(this.validationErrors);
-          this.dialogService.openError({
-            title: 'base.error',
-            value: this.validationErrors // pass validation errors as parameter
-          }).whenClosed(() =>{
-            console.log('closed error dialog');
-          });
-
-        } else {
-          // 0 server error
-        }
-      })
-      .finally(() => {
-        this.isRequesting = false;
-      });
+    this.dataService.navigateToConfirm('app/applicant', this.applicant, this.editMode);
   }
 
   public get hasValue(): boolean {
@@ -110,7 +84,7 @@ export class EditApplicant {
       .whenClosed((res) => {
         if (!res.wasCancelled) {
           this.applicant = this.initFormValues();
-          this.validator.validate();
+          // this.validator.validate();
         }
       });
   }

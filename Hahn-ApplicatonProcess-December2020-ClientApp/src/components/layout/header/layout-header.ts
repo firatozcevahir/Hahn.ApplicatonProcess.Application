@@ -10,7 +10,6 @@ export class LayoutHeader {
     private i18n: I18N,
     private router: Router
   ) {
-    console.log('is development', config.api);
    }
 
   public changeLang(val: string): void {

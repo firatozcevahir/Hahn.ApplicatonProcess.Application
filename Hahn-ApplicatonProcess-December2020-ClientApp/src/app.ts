@@ -13,11 +13,10 @@ export class App {
     private i18n: I18N
   ) {
     this.i18n = i18n;
-    console.log('i18n', this.i18n);
     this.i18n
       .setLocale('en')
       .then(() => {
-        console.log('locale is set');
+        // locale is set
       });
 
   }

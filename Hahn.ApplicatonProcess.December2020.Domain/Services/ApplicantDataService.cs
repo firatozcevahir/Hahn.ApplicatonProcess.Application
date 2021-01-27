@@ -45,7 +45,7 @@ namespace Hahn.ApplicatonProcess.December2020.Domain.DataService
             }
             catch (Exception ex)
             {
-                return GetExceptionApiResponse<Applicant>(ex.Message);
+                return ExceptionHelper.GetExceptionApiResponse<Applicant>(ex.Message);
             }
         }
 
@@ -63,7 +63,7 @@ namespace Hahn.ApplicatonProcess.December2020.Domain.DataService
             }
             catch (Exception ex)
             {
-                return GetExceptionApiResponse<IList<Applicant>>(ex.Message);
+                return ExceptionHelper.GetExceptionApiResponse<IList<Applicant>>(ex.Message);
             }
         }
 
@@ -105,7 +105,7 @@ namespace Hahn.ApplicatonProcess.December2020.Domain.DataService
             }
             catch (Exception ex)
             {
-                return GetExceptionApiResponse<int>(ex.Message);
+                return ExceptionHelper.GetExceptionApiResponse<int>(ex.Message);
             }
         }
 
@@ -157,7 +157,7 @@ namespace Hahn.ApplicatonProcess.December2020.Domain.DataService
             }
             catch (Exception ex)
             {
-                return GetExceptionApiResponse<int>(ex.Message);
+                return ExceptionHelper.GetExceptionApiResponse<int>(ex.Message);
             }
         }
 
@@ -203,7 +203,7 @@ namespace Hahn.ApplicatonProcess.December2020.Domain.DataService
             }
             catch (Exception ex)
             {
-                return GetExceptionApiResponse<int>(ex.Message);
+                return ExceptionHelper.GetExceptionApiResponse<int>(ex.Message);
             }
 
         }
@@ -213,14 +213,5 @@ namespace Hahn.ApplicatonProcess.December2020.Domain.DataService
             return _context.ApplicantsEntity.Any(e => e.ID == id);
         }
 
-        private ApiResponse<T> GetExceptionApiResponse<T>(string message)
-        {
-            return new ApiResponse<T>
-            {
-                Message = $"Exception: {message}",
-                Success = false,
-                MessageCode = MessageCode.Exception
-            };
-        }
     }
 }

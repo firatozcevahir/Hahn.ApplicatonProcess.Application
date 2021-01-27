@@ -21,17 +21,20 @@
     "warning": "Uyarı",
     "confirm": "Onayla",
     "confirm_deletion": "Silmeyi Onayla",
-    "confirm_reset":"Sıfırlamayı Onayla",
+    "confirm_reset": "Sıfırlamayı Onayla",
     "data_will_be_deleted": "Veri Silinecek",
-    "data_will_be_reset":"Veriler Sıfırlanacak"
+    "data_will_be_reset": "Veriler Sıfırlanacak",
+    "click_confirm_to_create":"Veriyi kaydetmek için lütfen onayla düğmesine basınız",
+    "click_confirm_to_update":"Veriyi güncellemek için lütfen onayla düğmesine basınız"
+  },
+  "routes": {
+    "home": "Uygulamam",
+    "about": "Hakkında",
+    "addapplicant": "Kişi Ekle",
+    "editapplicant": "Kişi Düzenle",
+    "confirmoperation": "İşlemi Onayla"
   },
   "header": {
-    "routes": {
-      "home": "Uygulamam",
-      "about": "Hakkında",
-      "addapplicant": "Kişi Ekle",
-      "editapplicant": "Kişi Düzenle"
-    },
     "language": "Dil",
     "lang": {
       "german": "Almanca",
@@ -55,7 +58,7 @@
       "ishired": "İşe Alındı mı?"
     },
     "total": "Toplam",
-    "validation_error":"Doğrulama Hatası",
+    "validation_error": "Doğrulama Hatası",
     "errors": {
       "name_required": "İsim gerekli",
       "name_greater_than": "İsim en az {{param}} karakter olmalıdır",

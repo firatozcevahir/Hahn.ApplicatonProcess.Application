@@ -6,6 +6,5 @@
   "prettier.singleQuote": true,
   "typescript.preferences.quoteStyle": "single",
   "javascript.preferences.quoteStyle": "single",
-  "prettier.quoteProps": "preserve",
-  "aurelia.autocomplete.quotes": "single"
+  "prettier.quoteProps": "preserve"
 }

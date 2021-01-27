@@ -1,0 +1,21 @@
+<template>
+  <require from="../spinner/spinner"></require>
+  <div class="row">
+    <div class="col-md-6 shadow p-4 rounded m-auto">
+      ${'base.click_confirm_to_' + (editMode ? 'update': 'create') & t}
+      <div class="form-group text-right">
+        <button class="btn btn-outline-secondary" 
+        type="button" 
+        click.trigger="returnPrevious()"
+        disabled.bind="isRequesting">
+          ${ 'base.cancel' & t}
+        </button>
+        <button class="btn btn-primary" type="button" 
+        click.trigger="save()"
+        disabled.bind="isRequesting">
+          <spinner if.bind="isRequesting"></spinner>
+          ${ 'base.confirm' & t}
+        </button>
+      </div>
+    </div>
+</template>

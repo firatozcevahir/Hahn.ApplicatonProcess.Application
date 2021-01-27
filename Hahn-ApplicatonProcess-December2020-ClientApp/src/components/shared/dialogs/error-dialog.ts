@@ -1,6 +1,7 @@
 import { inject } from 'aurelia-framework';
 import { DialogController } from 'aurelia-dialog';
 import { IDialogData } from '@models/dialog-data-model';
+import { MessageCode } from '@models/api-response';
 
 @inject(DialogController)
 export class ErrorDialog {
@@ -9,11 +10,12 @@ export class ErrorDialog {
 
   private activate(val: IDialogData): void {
     this.data = val;
+    console.log('data from dialog', this.data);
   }
 
 
-  public get isArray(): boolean{
+  public isValidationError(): boolean{
     // if object is array might be validation errors    
-   return this.data.value instanceof Array;
+   return this.data.messageCode === MessageCode.ValidationFailed;
   }
 }

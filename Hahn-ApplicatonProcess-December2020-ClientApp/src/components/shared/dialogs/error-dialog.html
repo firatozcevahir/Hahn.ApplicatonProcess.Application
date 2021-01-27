@@ -4,19 +4,14 @@
     <ux-dialog-header>${ data.title & t}</ux-dialog-header>
     <ux-dialog-body>
       ${ data.text & t}
-      <div class="alert alert-danger" role="alert" if.bind="isArray">
+      <div class="alert alert-danger" role="alert" if.bind="isValidationError()">
         <ul>
           <li repeat.for="error of data.value">
-            ${'data.title.' + error[0].toLowerCase() & t}
-            <ul>
-              <li repeat.for="val of error[1]">
-                ${val.split('|')[0] & t: {'param': val.split('|')[1]}}
-              </li>
-            </ul>
+            ${error & t}
           </li>
         </ul>
       </div>
-      <div if.bind="!isArray">
+      <div if.bind="!isValidationError()">
         ${ data.value }
       </div>
     </ux-dialog-body>

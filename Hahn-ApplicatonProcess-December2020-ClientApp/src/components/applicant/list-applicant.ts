@@ -26,7 +26,6 @@ export class ListApplicant {
       .then((response) => {
         this.applicants = response.data;
         this.filteredApplicants = this.applicants;
-        console.log(this.applicants);
       })
       .catch((error) => {
         // TODO: Handle Errors
@@ -70,7 +69,7 @@ export class ListApplicant {
               this.loadData();
             })
             .catch((error) => {
-              console.log(error);
+              // 
             })
             .finally(() => {
               this.isRequesting = false;

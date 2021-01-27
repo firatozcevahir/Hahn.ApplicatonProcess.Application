@@ -6,27 +6,34 @@ export default [
     name: 'home',
     moduleId: PLATFORM.moduleName('./components/home/home'),
     nav: true, // to show/hide link in navigation property of router
-    title: 'header.routes.home'
+    title: 'routes.home'
   },
   {
     route: 'about',
     name: 'about',
     moduleId: PLATFORM.moduleName('./components/about/about'),
     nav: false,
-    title: 'header.routes.about'
+    title: 'routes.about'
   },
   {
     route: 'applicant/edit',
     name: 'addapplicant',
     moduleId: PLATFORM.moduleName('./components/applicant/edit-applicant'),
     nav: true,
-    title: 'header.routes.addapplicant'
+    title: 'routes.addapplicant'
   },
   {
     route: 'applicant/edit/:id',
     name: 'editapplicant',
     moduleId: PLATFORM.moduleName('./components/applicant/edit-applicant'),
     nav: false,
-    title: 'header.routes.editapplicant'
+    title: 'routes.editapplicant'
+  },
+  {
+    route: 'operation/confirm',
+    name: 'operationconfirm',
+    moduleId: PLATFORM.moduleName('./components/shared/confirm-operation/confirm-operation'),
+    nav: false,
+    title: 'routes.confirmoperation'
   }
 ];

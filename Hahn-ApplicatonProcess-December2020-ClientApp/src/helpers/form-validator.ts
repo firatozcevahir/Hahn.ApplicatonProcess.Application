@@ -30,7 +30,7 @@ export class FormValidator {
     return this.controller.validate();
   }
 
-  public reVAlidateErrors(): void {
+  public reValidateErrors(): void {
     return this.controller.revalidateErrors();
   }
 
