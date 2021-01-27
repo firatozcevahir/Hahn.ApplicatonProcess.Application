@@ -4,7 +4,7 @@ import { Enhancer } from '@helpers/enhancer';
 
 @inject(Enhancer)
 export class BootstrapFormRenderer {
-  constructor(private enhancer: Enhancer) {}
+  constructor(private enhancer: Enhancer) { }
 
   render(instruction: RenderInstruction): void {
     for (const { result, elements } of instruction.unrender) {

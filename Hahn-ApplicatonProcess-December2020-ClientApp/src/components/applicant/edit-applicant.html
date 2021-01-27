@@ -46,9 +46,9 @@
           <div class="col-md-4 mb-3">
             <div class="form-group">
               <label for="countryOfOrigin">${ 'data.title.countryoforigin' & t}</label>
-              <input type="text" class="form-control" id="countryOfOrigin"
+              <input type="text" class="form-control ${ validator.validating ? ' input-spinner' : ''}" id="countryOfOrigin"
                 placeholder="${ 'data.title.countryoforigin' & t}"
-                value.bind="applicant.countryOfOrigin & validate:validator.rules" />
+                value.bind="applicant.countryOfOrigin & validate:validator.rules & debounce:200" />
             </div>
           </div>
         </div>

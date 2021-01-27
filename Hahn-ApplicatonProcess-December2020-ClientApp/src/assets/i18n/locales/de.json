@@ -1,78 +1,78 @@
 {
   "base": {
-    "true": "True",
-    "false": "False",
-    "yes": "Yes",
-    "no": "No",
+    "true": "Wahr",
+    "false": "Falsch",
+    "yes": "Ja",
+    "no": "Nein",
     "ok": "Ok",
-    "reset": "Reset",
-    "send": "Send",
-    "cancel": "Cancel",
-    "search": "Search",
-    "actions": "Actions",
-    "new": "New",
-    "create": "Create",
-    "edit": "Edit",
-    "update": "Update",
-    "delete": "Delete",
+    "reset": "Rücksetzen",
+    "send": "Senden",
+    "cancel": "Stornieren",
+    "search": "Suche",
+    "actions": "Aktionen",
+    "new": "Neu",
+    "create": "Erstellen",
+    "edit": "Redigieren",
+    "update": "Aktualisieren",
+    "delete": "Löschen",
     "error": "Error",
-    "success": "Success",
+    "success": "Erfolg",
     "info": "Info",
-    "warning": "Warning",
-    "confirm": "Confirm",
-    "confirm_deletion": "Confirm Deletion",
-    "confirm_reset": "Confirm Reset",
-    "data_will_be_deleted": "Data will be deleted",
-    "data_will_be_reset": "Data will be reset",
-    "click_confirm_to_create":"Please click confirm to create data",
-    "click_confirm_to_update":"Please click confirm to update data"
+    "warning": "Warnung",
+    "confirm": "Bestätigen",
+    "confirm_deletion": "Löschung Bestätigen",
+    "confirm_reset": "Bestätigen Sie das Zurücksetzen",
+    "data_will_be_deleted": "Daten werden gelöscht",
+    "data_will_be_reset": "Daten werden zurückgesetzt",
+    "click_confirm_to_create":"Bitte klicken Sie auf Bestätigen, um Daten zu erstellen",
+    "click_confirm_to_update":"Bitte klicken Sie auf Bestätigen, um die Daten zu aktualisieren"
   },
   "routes": {
-    "home": "My App",
-    "about": "About",
-    "addapplicant": "Add Applicant",
-    "editapplicant": "Edit Applicant",
-    "confirmoperation": "Confirm Operation"
+    "home": "Meine App",
+    "about": "Über",
+    "addapplicant": "Antragsteller Hinzufügen",
+    "editapplicant": "Bewerber Bearbeiten",
+    "confirmoperation": "Betrieb Bestätigen"
   },
   "header": {
-    "language": "Language",
+    "language": "Sprache",
     "lang": {
-      "german": "German",
-      "english": "English",
-      "turkish": "Turkish"
+      "german": "Deutsch",
+      "english": "Englisch",
+      "turkish": "Türkisch"
     },
     "swaggerui": "Swagger UI"
   },
   "home": {
-    "title": "Title of Home Component"
+    "title": "Titel der Hauptkomponente"
   },
   "data": {
     "title": {
       "id": "Id",
       "name": "Name",
-      "familyname": "Family Name",
-      "address": "Address",
-      "countryoforigin": "Country of Origin",
-      "emailaddress": "E-Mail Address",
-      "age": "Age",
-      "ishired": "Is Hired?"
+      "familyname": "Nachname",
+      "address": "Addresse",
+      "countryoforigin": "Herkunftsland",
+      "emailaddress": "E-Mail Addresse",
+      "age": "Alter",
+      "ishired": "Ist Angestellt?"
     },
     "total": "Total",
-    "validation_error": "Validation Error",
+    "validation_error": "Validierungsfehler",
     "errors": {
-      "name_required": "Name Required",
-      "name_greater_than": "Name must be greater than {{param}}",
-      "familyname_required": "Family Name Required",
-      "familyname_greater_than": "Family Name must be greater than {{param}}",
-      "address_required": "Address Required",
-      "address_greater_than": "Address must be greater than {{param}}",
-      "email_address_required": "E-mail address is required",
-      "invalid_email_address": "E-Mail address is not valid",
-      "age_invalid": "Age is invalid",
-      "age_between": "Age must be between {{param}}",
-      "country_required": "Country Required",
-      "country_greater_than": "Country must be greater than {{param}}",
-      "invalid_country": "Invalid Country of Origin"
+      "name_required": "Name erforderlich",
+      "name_greater_than": "Der Name muss größer als {{param}} sein ",
+      "familyname_required": "Nachname erforderlich",
+      "familyname_greater_than": "Nachname muss größer als {{param}} sein",
+      "address_required": "Addresse erforderlich",
+      "address_greater_than": "Addresse muss größer als {{param}} sein",
+      "email_address_required": "E-Mail Addresse erforderlich",
+      "invalid_email_address": "E-Mail Addresse ist ungültig",
+      "age_invalid": "Alter ist ungültig",
+      "age_between": "Das Alter muss zwischen {{param}} Jahren liegen",
+      "country_required": "Land Erforderlich",
+      "country_greater_than": "Land muss größer als {{param}} sein",
+      "invalid_country": "Ungültiges Herkunftsland"
     }
   }
 }

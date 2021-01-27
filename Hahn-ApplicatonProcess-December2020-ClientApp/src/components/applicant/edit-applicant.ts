@@ -42,6 +42,20 @@ export class EditApplicant {
     this.validator.reset();
   }
 
+  private initFormValues(): Applicant {
+    // similar to creating reactive form in angular with initial values
+    return {
+      id: this.editMode ? +this.id : 0, // keep id if editMode is true
+      address: '',
+      age: null,
+      countryOfOrigin: '',
+      emailAddress: '',
+      familyName: '',
+      hired: false,
+      name: '',
+    };
+  }
+
   public getApplicant(): void {
     this.isRequesting = true;
     this.dataService
@@ -84,22 +98,8 @@ export class EditApplicant {
       .whenClosed((res) => {
         if (!res.wasCancelled) {
           this.applicant = this.initFormValues();
-          // this.validator.validate();
+          this.validator.validate();
         }
       });
-  }
-
-  private initFormValues(): Applicant {
-    // similar to creating reactive form in angular with initial values
-    return {
-      id: this.editMode ? +this.id : 0, // keep id if editMode is true
-      address: '',
-      age: null,
-      countryOfOrigin: '',
-      emailAddress: '',
-      familyName: '',
-      hired: false,
-      name: '',
-    };
   }
 }

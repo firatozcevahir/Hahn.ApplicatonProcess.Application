@@ -67,12 +67,12 @@
       "address_required": "Address Required",
       "address_greater_than": "Address must be greater than {{param}}",
       "email_address_required": "E-mail address is required",
-      "invalid_email_address": "E-Mail address is not valid",
+      "invalid_email_address": "E-Mail address is invalid",
       "age_invalid": "Age is invalid",
       "age_between": "Age must be between {{param}}",
       "country_required": "Country Required",
       "country_greater_than": "Country must be greater than {{param}}",
-      "invalid_country": "Invalid Country of Origin"
+      "invalid_country": "Country is invalid"
     }
   }
 }

@@ -39,14 +39,14 @@ export class DataService {
     // returns object id in IApiResponse object
     if (put) {
       const url = `${this.api}/${service}`;
-      return (await this.http.put(url, content)).content;
+      return (await this.http.put(url, content));
     }
 
     const url = `${this.api}/${service}`;
-    return (await this.http.post(url, content)).content;
+    return (await this.http.post(url, content));
   }
 
-  public async delete(service: string,): Promise<IApiResponse<number>> {
+  public async delete(service: string): Promise<IApiResponse<number>> {
     // returns object id in IApiResponse object if operation is successful
     const url = `${this.api}/${service}`;
     return (await this.http.delete(url)).content as IApiResponse<number>;

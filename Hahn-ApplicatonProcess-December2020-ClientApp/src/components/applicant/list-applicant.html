@@ -11,15 +11,19 @@
         <input
          type="text"
          class="form-control" 
-         placeholder="${'base.search' & t}" 
-         aria-label="${'base.search' & t}" aria-describedby="search-icon"
+         placeholder="${'base.search' & t}..." 
+         aria-label="${'base.search' & t}..." aria-describedby="search-icon"
          value.bind="searchTerm"
          input.delegate="handleSearch()"
+         disabled.bind="isRequesting || applicants.length === 0"
          >
       </div>
     </div>
     <div class="col-6 text-right">
-      <button type="button" class="btn btn-icon btn-outline-info" click.trigger="loadData()">
+      <button type="button" class="btn btn-icon btn-outline-info" 
+      click.trigger="loadData()"
+      disabled.bind="isRequesting"
+      >
         <span class="iconify" data-icon="ic:twotone-refresh" data-inline="false"></span>
       </button>
       <a class="btn btn-outline-success" href="#/applicant/edit">${'base.new' & t}</a>
