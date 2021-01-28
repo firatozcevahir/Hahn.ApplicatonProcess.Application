@@ -26,6 +26,7 @@ If you want to run the project in development mode:
 
 ### Docker Support
 This app supports docker. So you can run the app as a docker container using the command below:
+
 `docker run -d --name hahn_app -p 7000:80 firatozcevahir/hahnapplicatonprocessdecember2020web`
 This command will pull the image with the `latest` tag and run as a container.
 After container created and running, navigate to http://localhost:7000 to see the app.
