@@ -17,7 +17,7 @@
     },
     "Hahn.ApplicatonProcess.December2020.Web": {
       "commandName": "Project",
-      "launchBrowser": false,
+      "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Production"
       },

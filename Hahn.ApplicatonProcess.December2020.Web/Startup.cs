@@ -149,7 +149,7 @@ namespace Hahn.ApplicatonProcess.December2020.Web
             {
                 if (env.IsDevelopment())
                 {
-                    spa.UseProxyToSpaDevelopmentServer("http://localhost:8080");
+                    spa.UseProxyToSpaDevelopmentServer(Configuration.GetSection("app:spaDevelopmentServer").Value);
                 }
             });
 

@@ -10,7 +10,6 @@ export class ErrorDialog {
 
   private activate(val: IDialogData): void {
     this.data = val;
-    console.log('data from dialog', this.data);
   }
 
 

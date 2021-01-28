@@ -67,8 +67,8 @@
             ${ 'base.reset' & t}
           </button>
           <button class="btn btn-primary" type="submit"
-            disabled.bind="!hasValue || hasEmptyFields || !validator.isValid || isRequesting">
-            <spinner if.bind="isRequesting"></spinner>
+            disabled.bind="!hasValue || hasEmptyFields || !validator.isValid || isRequesting || validator.validating">
+            <spinner if.bind="isRequesting || validator.validating"></spinner>
             ${ (editMode ? 'base.update' : 'base.send') & t}
           </button>
         </div>

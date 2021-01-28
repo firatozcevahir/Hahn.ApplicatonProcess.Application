@@ -61,7 +61,6 @@ export class EditApplicant {
     this.dataService
       .get<Applicant>(`app/applicant/${this.id}`)
       .then((response) => {
-        console.log('response data', response.data);
         this.applicant = response.data;
       })
       .catch((error: HttpResponseMessage) => {

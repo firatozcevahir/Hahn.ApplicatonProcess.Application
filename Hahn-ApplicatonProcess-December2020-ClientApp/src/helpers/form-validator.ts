@@ -22,7 +22,7 @@ export class FormValidator {
     private http: HttpClient
   ) {
     this.controller = this.controllerFactory.createForCurrentScope();
-    this.controller.validateTrigger = validateTrigger.changeOrFocusout;
+    this.controller.validateTrigger = validateTrigger.changeOrBlur;
     this.controller.addRenderer(this.renderer);
     this.controller.subscribe((res) => {
       this.isValid = res.errors.length === 0;

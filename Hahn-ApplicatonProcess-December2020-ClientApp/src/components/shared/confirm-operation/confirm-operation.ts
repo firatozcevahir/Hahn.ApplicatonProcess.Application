@@ -33,16 +33,13 @@ export class ConfirmOperation {
     this.dataService
       .post<IApiResponse<any>>(this.service, this.relatedObject, this.editMode)
       .then((res) => {
-        console.log('rest from post/put', res);
         this.router.navigate('/');
       })
       .catch((error: HttpResponseMessage) => {
-        console.log('bad request error', error);
           const apiResponse = (error.content as IApiResponse<any>);
-          console.log()
           this.dialogService.openError({
             title: 'base.error',
-            text: apiResponse.messageCode === MessageCode.ValidationFailed ? 'data.validation_error' : '',
+            text: apiResponse.messageCode === MessageCode.ValidationFailed ? 'data.validation_error' : 'base.something_went_wrong',
             value: apiResponse.data, // pass validation errors as parameter,
             messageCode: apiResponse.messageCode ?? 0
           }).whenClosed(() => {

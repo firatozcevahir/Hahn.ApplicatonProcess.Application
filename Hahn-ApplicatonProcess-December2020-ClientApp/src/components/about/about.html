@@ -1,3 +1,26 @@
 <template>
-  <h1>ABOUT</h1>
+  <h1 class="code-line" data-line-start=0 data-line-end=1 ><a id="HahnApplicatonProcessApplication_0"></a>Hahn.ApplicatonProcess.Application</h1>
+<h3 class="code-line" data-line-start=2 data-line-end=3 ><a id="Build_and_Start_the_Project_2"></a>Build and Start the Project</h3>
+<ol>
+<li class="has-line-data" data-line-start="3" data-line-end="4">Download as zip archive or clone the repository</li>
+<li class="has-line-data" data-line-start="4" data-line-end="5">After downloading, open the solution with Visual Studio</li>
+<li class="has-line-data" data-line-start="5" data-line-end="6">You can use <strong>dotnet restore</strong> to restore the NuGet packages or wait Visual Studio to restore the projects automatically</li>
+<li class="has-line-data" data-line-start="6" data-line-end="8">To use aurelia app, you also need to run <strong><em>npm install</em></strong> to install dependencies<br>
+(the aurelia app is located in the <em>Hahn-ApplicatonProcess-December2020-ClientApp</em> folder)</li>
+</ol>
+<h5 class="code-line" data-line-start=10 data-line-end=11 ><a id="_Running_the_Project_10"></a>- Running the Project</h5>
+<ol>
+<li class="has-line-data" data-line-start="11" data-line-end="12">If you want to run the project in <strong>Production</strong> mode, set <em>ASPNETCORE_ENVIRONMENT</em> to <em>Production</em> in launchSettings.json</li>
+<li class="has-line-data" data-line-start="12" data-line-end="14">Then run the project</li>
+</ol>
+<p class="has-line-data" data-line-start="14" data-line-end="15"><strong><em>Note:</em></strong> In production mode, you <strong>do not</strong> need to run the aurelia app. The app is served statically from the <strong><em>wwwroot</em></strong> folder (because aurelia app’s build output is set to backend’s wwwroot folder in aurelia.json)</p>
+<hr>
+<p class="has-line-data" data-line-start="16" data-line-end="17">If you want to run the project in development mode:</p>
+<ol>
+<li class="has-line-data" data-line-start="17" data-line-end="18">Set <em>ASPNETCORE_ENVIRONMENT</em> to <em>Development</em> in launchSettings.json</li>
+<li class="has-line-data" data-line-start="18" data-line-end="19">Then run the project</li>
+<li class="has-line-data" data-line-start="19" data-line-end="22">Run the aurelia app, using <strong>au run</strong> command<br>
+(the aurelia app is located in the <em>Hahn-ApplicatonProcess-December2020-ClientApp</em> folder)</li>
+</ol>
+<p class="has-line-data" data-line-start="22" data-line-end="23"><strong><em>Note:</em></strong> In development mode, you also need to run the aurelia app because backend uses <em>UseProxyToSpaDevelopmentServer</em> <strong>in development mode</strong> to forward requests to the aurelia development server.</p>
 </template>
